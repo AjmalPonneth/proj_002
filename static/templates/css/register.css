@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 ::placeholder{
+    text-transform: capitalize;
     letter-spacing: 2px;
 }
-*{
-    box-sizing: border-box;
-}
-body {
+body{
     --color: 44, 62, 80;
     display: flex;
     align-items: center;
@@ -17,7 +14,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.die-inputs {
+.die-inputs{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,22 +22,20 @@ body {
     width: 100%;
     height: 40vh;
 }
-
-.login-form {
+.register-form {
     width: 40%;
-    height: 47vh;
+    height: 950px;
     background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .input-box {
     margin-bottom: 20px;
     width: 80%;
 }
-.login-form input[type=text],input[type=password] {
+input[type=text],input[type=password],input[type=number],input[type=email] {
     width: 100%;
     border: none;
     height: 6vh;
@@ -48,7 +43,7 @@ body {
     border-bottom: .1rem solid rgba(0,0,0,.1);
     outline: none;
 }
-.login{
+.register{
     border: none;
     width: 100%;
     height: 6vh;
@@ -58,7 +53,7 @@ body {
     letter-spacing: 2px;
     cursor: pointer;
 }
-.login:hover{
+.register:hover{
     transform: scale(1.1);
 }
 @media(max-width:1200px){
@@ -67,12 +62,12 @@ body {
     }
 }
 @media(max-width:991px){
-    .login-form{
+    .register-form{
         width: 30%;
     }
 }
 @media (max-width:768px) {
-    .login-form{
+    .register-form{
         width: 90%;
     }
 }
