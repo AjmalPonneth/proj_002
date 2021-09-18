@@ -14,7 +14,8 @@
   </head>
   <body>
     <div class="die-inputs">
-      <form class="login-form">
+      <form class="login-form" method="POST">
+        {% csrf_token %}
         <h3>Login Here!</h3>
         <div class="input-box">
           <input

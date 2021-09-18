@@ -1,0 +1,148 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="{% static 'templates/css/style.css'%}" />
+
+    <script src="{% static 'templates/js/script.js'%}"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"
+      integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <input type="checkbox" id="menubar" />
+      <label for="menubar" class="fas fa-bars"></label>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="{% url 'login'%}">Login</a>
+      </nav>
+    </header>
+    <section class="home" id="home">
+      <div class="content">
+        <h3>Find Your Code Partner Here</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+          tempore nobis nemo esse nesciunt voluptates molestias blanditiis quia
+          modi, laboriosam quae sequi earum error est nam natus saepe porro!
+          Enim!
+        </p>
+        <a href="{% url 'register'%}" class="btn">Get Strarted</a>
+      </div>
+      <div class="image">
+        <img
+          src="{% static 'templates/images/undraw_pair_programming_njlp.svg' %}"
+          alt=""
+        />
+      </div>
+    </section>
+    <section class="features" id="features">
+      <h1 class="heading">Features</h1>
+      <div class="box-container">
+        <div class="box">
+          <h3>Create Session</h3>
+          <img src="{% static 'templates/images/schedule.png'%}" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
+            perferendis necessitatibus omnis facilis cupiditate ipsam
+            voluptatibus. Unde vero officiis autem, culpa veritatis
+            necessitatibus accusantium eum. Accusamus aspernatur quae
+            repudiandae deleniti?
+          </p>
+        </div>
+        <div class="box">
+          <h3>Book Session</h3>
+          <img src="{% static 'templates/images/calendar.png'%}" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
+            perferendis necessitatibus omnis facilis cupiditate ipsam
+            voluptatibus. Unde vero officiis autem, culpa veritatis
+            necessitatibus accusantium eum. Accusamus aspernatur quae
+            repudiandae deleniti?
+          </p>
+        </div>
+        <div class="box">
+          <h3>PowerFul Video Chat</h3>
+          <img src="{%static 'templates/images/webcam.png' %}" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque
+            perferendis necessitatibus omnis facilis cupiditate ipsam
+            voluptatibus. Unde vero officiis autem, culpa veritatis
+            necessitatibus accusantium eum. Accusamus aspernatur quae
+            repudiandae deleniti?
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <h1 class="heading">About Us</h1>
+      <div class="column">
+        <div class="image">
+          <img src="{% static 'templates/images/Coding_SVG.svg' %}" alt="" />
+        </div>
+        <div class="content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil in
+            ipsa assumenda! Explicabo a doloribus omnis modi, eveniet iusto
+            repellat repellendus, voluptas laborum minus totam. Velit nulla iste
+            amet voluptatum eius ratione accusamus accusantium molestias
+            dignissimos suscipit, iusto aliquid ullam doloribus unde ab sapiente
+            laboriosam magni aspernatur labore pariatur similique dolore.
+            Voluptate error officiis impedit ex eligendi quod ipsum sequi
+            voluptatibus porro fugit quidem quis ipsa dolor exercitationem est
+            quam inventore sunt quo qui modi, tempora pariatur facilis, fugiat
+            voluptatem! Dolorum cumque, quasi aspernatur, sit impedit esse ea
+            molestiae doloribus ratione qui eos iure tempore autem quia! Error,
+            recusandae repellendus!
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <form action="">
+        <h1 class="heading">contact us</h1>
+        <div class="input-box">
+          <input type="text" name="name" id="name" />
+          <label>name</label>
+        </div>
+        <div class="input-box">
+          <input type="email" />
+          <label>email</label>
+        </div>
+        <div class="input-box">
+          <input type="number" class="phone" name="name" id="name" max="10" />
+          <label>Phone</label>
+        </div>
+        <div class="input-box">
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <label for="name">message</label>
+        </div>
+        <input type="submit" value="send message" class="btn" />
+      </form>
+      <div class="image">
+        <img
+          src="{%static 'templates/images/Social_media_adv_SVG.svg'%}"
+          alt=""
+        />
+      </div>
+    </section>
+  </body>
+</html>
