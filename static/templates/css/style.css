@@ -44,7 +44,6 @@ section{
     text-align: center;
     font-size: 3.5rem;
     text-transform: uppercase;
-
 }
 header{
     position: fixed;
@@ -80,8 +79,6 @@ header label{
     align-items: center;
     justify-content: center;
 }
-
-
 .home .image img{
     width: 40vw;
     /* animation: float 3s linear infinite; */
@@ -164,7 +161,6 @@ header label{
 .contact form{
     flex: 1 1 40rem;
     padding: 2rem 3rem;
-    /* border: .1rem solid rgba(0, 0, 0, .2); */
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
     border-radius: .5rem;
     background: #fff;

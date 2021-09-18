@@ -6,9 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'templates/css/login.css'%}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'templates/css/login.css'%}"
+    />
   </head>
   <body>
-    <div class="container"></div>
+    <div class="die-inputs">
+      <form class="login-form">
+        <h3>Login Here!</h3>
+        <div class="input-box">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="off"
+          />
+        </div>
+        <div class="input-box">
+          <input type="submit" value="Login" class="login" />
+        </div>
+        <p class="text">Don't Have An Account? <a href="">Sign Up</a></p>
+      </form>
+    </div>
   </body>
 </html>
