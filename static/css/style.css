@@ -17,6 +17,16 @@ html{
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+.parsley-required,
+.parsley-type {
+    color: red;
+    list-style: none;
+    font-size: 15px;
+}
+::placeholder {
+    text-transform: capitalize;
+    color: var(--button-color);
+}
 body{
     background: var(--primary-color);
 }
@@ -185,21 +195,6 @@ header label{
 .contact form .input-box textarea{
     resize: none;
     height: 13rem;
-}
-.contact form .input-box label{
-    position: absolute;
-    top: 1.7rem;left: 0;
-    font-size: 1.7rem;
-    color: #666;
-    transition: .2s linear;
-}
-.contact form .input-box input:focus ~ label,
-.contact form .input-box input:valid ~ label,
-.contact form .input-box textarea:focus ~ label,
-.contact form .input-box textarea:valid ~ label{
-    top: -.5rem;
-    font-size: 1.5rem;
-    color: var(--button-color);
 }
 @media(max-width:1200px){
     html{

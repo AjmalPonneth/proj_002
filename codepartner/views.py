@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login as dj_login
+from django.contrib.auth.models import User
+import json
 # Create your views here.
 
 
@@ -14,16 +17,11 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         return render(self.request, 'login.html')
 
+
+class LoginValidation(View):
     def post(self, request, *args, **kwargs):
-        name = self.request.POST['username']
-        print(name)
-        password = self.request.POST['password']
-        user = authenticate(request, username=name, password=password)
-        if user is not None:
-            dj_login(request, user)
-            return redirect('index')
-        else:
-            return HttpResponse('Not Valid!')
+        data = json.loads(request.body)
+        return JsonResponse({'valid': True})
 
 
 class RegisterView(TemplateView):
@@ -31,4 +29,4 @@ class RegisterView(TemplateView):
 
 
 class IndexView(TemplateView, View):
-    template_name = 'index.html'
+    template_name = 'base.html'
