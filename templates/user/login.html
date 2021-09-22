@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <script src="{% static 'js/login.js'%}" defer></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -16,8 +15,7 @@
   </head>
   <body>
     <div class="die-inputs">
-      <form class="login-form" method="POST">
-        {% csrf_token %}
+      <form class="login-form" id="login-form">
         <h3>Login Here!</h3>
         <div class="input-box">
           <input
@@ -26,6 +24,7 @@
             id="username"
             placeholder="Username"
             autocomplete="off"
+            required
           />
         </div>
         <div class="input-box">
@@ -35,16 +34,41 @@
             id="password"
             placeholder="Password"
             autocomplete="off"
+            required
           />
         </div>
         <div class="input-box">
-          <input type="submit" value="Login" class="login" />
+          <input type="submit" value="Login" class="login" id="login" />
         </div>
-
+        <div id="error"></div>
         <p class="text">
           Don't Have An Account? <a href="{% url 'register'%}">Sign Up</a>
         </p>
       </form>
     </div>
+    <script>
+      const btn = document.getElementById("login")
+      btn.addEventListener("click", (e) => {
+        const usernameVal = document.querySelector("#username").value
+        const passwordVal = document.querySelector("#password").value
+        if (usernameVal.length > 0) {
+          fetch("{% url 'validate'%}", {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Requested-With": "XMLHttpRequest",
+            },
+            body: JSON.stringify({
+              username: usernameVal,
+              password: passwordVal,
+            }),
+            method: "POST",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data)
+            })
+        }
+      })
+    </script>
   </body>
 </html>
