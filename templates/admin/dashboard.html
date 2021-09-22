@@ -1,0 +1,88 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/dashboard.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <h2>Logo</h2>
+        </div>
+        <ul class="sidebar-nav">
+          <li class="active">
+            <a href="#"><i class="fa fa-home"></i>Home</a>
+          </li>
+        </ul>
+      </aside>
+
+      <div id="navbar-wrapper">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="#" class="navbar-brand" id="sidebar-toggle"
+                ><i class="fa fa-bars"></i
+              ></a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <section id="content-wrapper">
+        <div class="row counts">
+          <div class="col">
+            <h4>Total Users</h4>
+            <p>24</p>
+          </div>
+          <div class="col">
+            <h4>Active Users</h4>
+            <p>20</p>
+          </div>
+          <div class="col">
+            <h4>Blocked Users</h4>
+            <p>4</p>
+          </div>
+          <div class="col">
+            <h4>Total Sessions</h4>
+            <p>100</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script>
+      const $button = document.querySelector("#sidebar-toggle")
+      const $wrapper = document.querySelector("#wrapper")
+
+      $button.addEventListener("click", (e) => {
+        e.preventDefault()
+        $wrapper.classList.toggle("toggled")
+      })
+    </script>
+  </body>
+</html>
