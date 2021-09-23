@@ -16,7 +16,10 @@ body {
     color: rgb(var(--color));
     font-family: 'Poppins', sans-serif;
 }
-
+#error{
+    color: red;
+    font-size: medium;
+}
 .die-inputs {
     display: flex;
     flex-direction: column;

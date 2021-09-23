@@ -10,7 +10,7 @@ var myChart = new Chart(ctx, {
     labels: ["Windows", "Android", "Mac", "Iphone", "Others"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "# Windows",
         data: [windows, mac, iphone, android, others],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

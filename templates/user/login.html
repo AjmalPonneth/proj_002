@@ -40,7 +40,7 @@
         <div class="input-box">
           <input type="submit" value="Login" class="login" id="login" />
         </div>
-        <div id="error"></div>
+        <p id="error"></p>
         <p class="text">
           Don't Have An Account? <a href="{% url 'register'%}">Sign Up</a>
         </p>
@@ -49,14 +49,11 @@
     <script>
       const btn = document.getElementById("login")
       btn.addEventListener("click", (e) => {
+        e.preventDefault()
         const usernameVal = document.querySelector("#username").value
         const passwordVal = document.querySelector("#password").value
         if (usernameVal.length > 0) {
-          fetch("{% url 'validate'%}", {
-            headers: {
-              "Content-Type": "application/json",
-              "X-Requested-With": "XMLHttpRequest",
-            },
+          fetch("{% url 'login'%}", {
             body: JSON.stringify({
               username: usernameVal,
               password: passwordVal,
@@ -65,7 +62,12 @@
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data)
+              if (data.success == false) {
+                document.getElementById("error").textContent =
+                  "Username or password is incorrect!"
+              } else {
+                window.location.replace("index")
+              }
             })
         }
       })
