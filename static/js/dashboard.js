@@ -1,4 +1,9 @@
 var ctx = document.getElementById("myChart").getContext("2d")
+let windows = document.getElementById("windows").value
+let mac = document.getElementById("mac").value
+let iphone = document.getElementById("iphone").value
+let android = document.getElementById("android").value
+let others = document.getElementById("others").value
 var myChart = new Chart(ctx, {
   type: "bar",
   data: {
@@ -6,7 +11,7 @@ var myChart = new Chart(ctx, {
     datasets: [
       {
         label: "# of Votes",
-        data: [12, 19, 3, 5, 2],
+        data: [windows, mac, iphone, android, others],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
