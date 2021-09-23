@@ -15,6 +15,8 @@ class LandingView(TemplateView):
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('index')
         return render(self.request, 'user/login.html')
 
     def post(self, request, *args, **kwargs):
@@ -24,15 +26,29 @@ class LoginView(View):
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
             auth.login(request, user)
+            auth.login(request, user)
             return JsonResponse({'success': True}, safe=False)
         else:
             return JsonResponse({'success': False}, safe=False)
         return JsonResponse(data)
 
 
-class RegisterView(TemplateView):
+class RegisterView(TemplateView, LoginRequiredMixin):
     template_name = 'user/register.html'
 
 
-class IndexView(TemplateView, LoginRequiredMixin):
-    template_name = 'user/base.html'
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return render(request, 'user/base.html')
+        else:
+            return redirect('login')
+        return render(request, 'user/base.html')
+
+
+class LogoutView(View):
+    url = 'login'
+
+    def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        return redirect(self.url)

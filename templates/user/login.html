@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
+    <script src="{% static 'js/login.js'%}" defer></script>
   </head>
   <body>
     <div class="die-inputs">
@@ -46,31 +47,5 @@
         </p>
       </form>
     </div>
-    <script>
-      const btn = document.getElementById("login")
-      btn.addEventListener("click", (e) => {
-        e.preventDefault()
-        const usernameVal = document.querySelector("#username").value
-        const passwordVal = document.querySelector("#password").value
-        if (usernameVal.length > 0) {
-          fetch("{% url 'login'%}", {
-            body: JSON.stringify({
-              username: usernameVal,
-              password: passwordVal,
-            }),
-            method: "POST",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.success == false) {
-                document.getElementById("error").textContent =
-                  "Username or password is incorrect!"
-              } else {
-                window.location.replace("index")
-              }
-            })
-        }
-      })
-    </script>
   </body>
 </html>
