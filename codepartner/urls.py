@@ -6,7 +6,7 @@ urlpatterns = [
     path('login', csrf_exempt(
         LoginView.as_view()
     ), name='login'),
-    path('register', RegisterView.as_view(), name='register'),
+    path('register', csrf_exempt(RegisterView.as_view()), name='register'),
     path('index', IndexView.as_view(), name='index'),
     path('logout', LogoutView.as_view(), name='logout'),
 ]

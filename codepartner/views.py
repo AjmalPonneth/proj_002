@@ -20,12 +20,11 @@ class LoginView(View):
         return render(self.request, 'user/login.html')
 
     def post(self, request, *args, **kwargs):
-        data = json.loads(request.body)
+        data = json.loads(self.request.body)
         username = data['username']
         password = data['password']
         user = auth.authenticate(request, username=username, password=password)
         if user is not None:
-            auth.login(request, user)
             auth.login(request, user)
             return JsonResponse({'success': True}, safe=False)
         else:
@@ -33,16 +32,24 @@ class LoginView(View):
         return JsonResponse(data)
 
 
-class RegisterView(TemplateView, LoginRequiredMixin):
-    template_name = 'user/register.html'
-
-
-class IndexView(View):
+class RegisterView(View):
     def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return render(request, 'user/base.html')
-        else:
-            return redirect('login')
+        return render(self.request, 'user/register.html')
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(self.request.body)
+        username = data['username']
+        email = data['email']
+        phone = data['phone']
+        password = data['password']
+        return JsonResponse(data)
+
+
+class IndexView(LoginRequiredMixin, View):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
+    def get(self, request, *args, **kwargs):
         return render(request, 'user/base.html')
 
 

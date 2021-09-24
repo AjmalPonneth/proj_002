@@ -13,7 +13,10 @@ body{
     color: rgb(var(--color));
     font-family: 'Poppins', sans-serif;
 }
-
+#error{
+    color: red;
+    font-size: medium;
+}
 .die-inputs{
     display: flex;
     flex-direction: column;
@@ -35,7 +38,7 @@ body{
     margin-bottom: 20px;
     width: 80%;
 }
-input[type=text],input[type=password],input[type=number],input[type=email] {
+input[type=text],input[type=password],input[type=tel],input[type=email] {
     width: 100%;
     border: none;
     height: 6vh;

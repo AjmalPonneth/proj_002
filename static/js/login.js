@@ -1,5 +1,5 @@
-const btn = document.getElementById("login")
-btn.addEventListener("click", (e) => {
+const form = document.getElementById("login-form")
+form.addEventListener("submit", (e) => {
   e.preventDefault()
   const usernameVal = document.querySelector("#username").value
   const passwordVal = document.querySelector("#password").value

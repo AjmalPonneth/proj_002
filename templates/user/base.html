@@ -12,32 +12,26 @@
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'templates/css/base.css'%}"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}" />
   </head>
   <body>
+    <input type="checkbox" id="check" />
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
     <div class="sidebar">
-      <div class="logo_content">
-        <div class="logo">
-          <div class="logo_name">Code Partner</div>
-        </div>
-        <i class="bx bx-menu"></i>
-      </div>
-      <ul class="nav_list">
-        <li>
-          <a href="#">
-            <i class="bx bx-grid-alt"></i>
-            <span class="links_name">Find Partner</span>
-          </a>
-        </li>
+      <header>< / ></header>
+      <ul>
+        <li><a href="">Find Your Partner</a></li>
+        <li><a href="">Upcoming Sessions</a></li>
+        <li><a href="">Pending Session</a></li>
       </ul>
     </div>
+    <header class="main-header">
+      <div class="username">
+        <p style="text-transform: capitalize">{{request.user}}</p>
+      </div>
+    </header>
   </body>
 </html>
