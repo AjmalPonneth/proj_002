@@ -24,8 +24,12 @@
       <header>< / ></header>
       <ul>
         <li><a href="">Find Your Partner</a></li>
-        <li><a href="">Upcoming Sessions</a></li>
-        <li><a href="">Pending Session</a></li>
+        <li>
+          <a href="">Upcoming Sessions</a>
+        </li>
+        <li>
+          <a href="">Pending Session</a>
+        </li>
       </ul>
     </div>
     <header class="main-header">
@@ -33,5 +37,6 @@
         <p style="text-transform: capitalize">{{request.user}}</p>
       </div>
     </header>
+    <section>{% block content%} {% endblock %}</section>
   </body>
 </html>

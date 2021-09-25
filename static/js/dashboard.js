@@ -11,7 +11,7 @@ var myChart = new Chart(ctx, {
     datasets: [
       {
         label: "# Windows",
-        data: [windows, mac, iphone, android, others],
+        data: [windows, android, mac, iphone, others],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

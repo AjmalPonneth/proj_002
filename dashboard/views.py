@@ -17,4 +17,4 @@ class DashboardMainView(View):
         iphone = new_dic['iph']
         android = new_dic['android']
         others = new_dic['oth']
-        return render(request, 'admin/dashboard.html', {'windows': windows, 'mac': mac, 'iphone': iphone, 'android': android, 'others': others})
+        return render(request, 'admin_panel/dashboard.html', {'windows': windows, 'mac': mac, 'iphone': iphone, 'android': android, 'others': others})

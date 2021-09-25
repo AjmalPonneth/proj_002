@@ -36,6 +36,7 @@ body{
     /* border-top: 1px solid gray; */
     padding: 20px;
 }
+
 #check{
     display: none;
 }
@@ -78,4 +79,9 @@ label #cancel{
     height: 10vh;
     display: flex;
     justify-content: right;
+    align-items: center;
+    
+}
+.main-header p{
+    margin-right: 25px;
 }
