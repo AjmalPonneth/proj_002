@@ -8,6 +8,9 @@ form.addEventListener("submit", (e) => {
   const password2 = document.querySelector("#password2").value
   if (password == password2) {
     fetch("register", {
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         username: username,
         email: email,
@@ -18,7 +21,18 @@ form.addEventListener("submit", (e) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        if (data.usesr_name_exists == true) {
+          document.querySelector("#error").textContent =
+            "This username already exists!"
+        } else if (data.email_exists == true) {
+          document.querySelector("#error").textContent =
+            "This email already exists!"
+        } else if (data.phone_exists == true) {
+          document.querySelector("#error").textContent =
+            "This phone number already exists!"
+        } else {
+          window.location.replace("login")
+        }
       })
   } else {
     document.getElementById("error").textContent = "Password not match!"

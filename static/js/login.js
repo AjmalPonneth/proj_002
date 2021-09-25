@@ -5,6 +5,9 @@ form.addEventListener("submit", (e) => {
   const passwordVal = document.querySelector("#password").value
   if (usernameVal.length > 0) {
     fetch("login", {
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         username: usernameVal,
         password: passwordVal,

@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.models import NewUser
 # Create your views here.
 
 
@@ -34,6 +35,8 @@ class LoginView(View):
 
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('index')
         return render(self.request, 'user/register.html')
 
     def post(self, request, *args, **kwargs):
@@ -42,7 +45,16 @@ class RegisterView(View):
         email = data['email']
         phone = data['phone']
         password = data['password']
-        return JsonResponse(data)
+        if NewUser.objects.filter(user_name=username).exists():
+            return JsonResponse({'usesr_name_exists': True})
+        elif NewUser.objects.filter(email=email).exists():
+            return JsonResponse({'email_exists': True})
+        elif NewUser.objects.filter(phone_number=phone).exists():
+            return JsonResponse({'phone_exists': True})
+        else:
+            NewUser.objects.create(
+                user_name=username, email=email, phone_number=phone, password=password)
+        return JsonResponse({'success': True})
 
 
 class IndexView(LoginRequiredMixin, View):
@@ -50,6 +62,7 @@ class IndexView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
+        print(request.user.is_authenticated)
         return render(request, 'user/base.html')
 
 

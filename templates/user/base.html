@@ -34,7 +34,7 @@
     </div>
     <header class="main-header">
       <div class="username">
-        <p style="text-transform: capitalize">{{request.user}}</p>
+        <p style="text-transform: capitalize">{{request.user.user_name}}</p>
       </div>
     </header>
     <section>{% block content%} {% endblock %}</section>
