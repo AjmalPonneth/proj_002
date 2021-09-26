@@ -59,18 +59,35 @@ input[type=text],input[type=password],input[type=tel],input[type=email] {
 .register:hover{
     transform: scale(1.1);
 }
+.google{
+    text-decoration: none;
+    padding: 10px 150px 10px 150px;
+    width: 100%;
+    border: 2px solid #000;
+    color: #000;
+    border-radius: 10px;
+}
 @media(max-width:1200px){
     html{
         font-size: 60%;
+    }
+    .google{
+        padding: 10px 85px 10px 85px;
     }
 }
 @media(max-width:991px){
     .register-form{
         width: 30%;
     }
+    .google{
+        padding: 10px 85px 10px 85px;
+    }
 }
 @media (max-width:768px) {
     .register-form{
         width: 90%;
+    }
+    .google{
+        padding: 10px 85px 10px 85px;
     }
 }

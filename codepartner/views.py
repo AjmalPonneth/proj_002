@@ -62,13 +62,16 @@ class IndexView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
-        print(request.user.is_authenticated)
-        return render(request, 'user/base.html')
+        return render(request, 'user/index.html')
 
 
 class LogoutView(View):
     url = 'login'
 
     def get(self, request, *args, **kwargs):
+        auth.logout(request)
+        return redirect(self.url)
+
+    def post(self, request, *args, **kwargs):
         auth.logout(request)
         return redirect(self.url)

@@ -80,8 +80,39 @@ label #cancel{
     display: flex;
     justify-content: right;
     align-items: center;
-    
 }
 .main-header p{
     margin-right: 25px;
+}
+.button-area{
+    display: flex;
+    width: 100%;
+    height: 5vh;
+    background: #fff;
+    align-items: center;
+}
+.button-area button{
+    margin-left: 250px;
+    margin-bottom: 20px;
+    border: none;
+    color: #fff;
+    background: #706FD3;
+    padding: 10px;
+    width: 15%;
+}
+
+@media(max-width:1200px){
+    html{
+        font-size: 55%;
+    }
+}
+@media(max-width:768px){
+    .button-area{
+        justify-content: right;
+        align-items: center;
+        
+    }
+    .button-area button{
+        flex: 1;
+    }
 }
