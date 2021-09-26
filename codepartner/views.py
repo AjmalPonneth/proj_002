@@ -18,7 +18,7 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('index')
-        return render(self.request, 'user/login.html')
+        return render(self.request, 'account/login.html')
 
     def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
@@ -37,7 +37,7 @@ class RegisterView(View):
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return redirect('index')
-        return render(self.request, 'user/register.html')
+        return render(self.request, 'account/signup.html')
 
     def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
