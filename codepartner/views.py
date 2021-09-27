@@ -57,6 +57,10 @@ class RegisterView(View):
         return JsonResponse({'success': True})
 
 
+class OTPLoginView(TemplateView):
+    template_name = 'users/otp_login.html'
+
+
 class IndexView(LoginRequiredMixin, View):
     login_url = 'login'
     redirect_field_name = 'redirect_to'

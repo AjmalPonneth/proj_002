@@ -31,7 +31,7 @@ body {
 
 .login-form {
     width: 40%;
-    height: 47vh;
+    height: 60vh;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -64,6 +64,13 @@ body {
 .login:hover{
     transform: scale(1.1);
 }
+#otp{
+    text-decoration: none;
+}
+#otp:hover{
+    color: red;
+}
+
 @media(max-width:1200px){
     html{
         font-size: 60%;
