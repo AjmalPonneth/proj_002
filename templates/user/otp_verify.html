@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      input[maxlength="4"] + svg line {
+        stroke-dasharray: 30;
+        stroke-dashoffset: -10;
+      }
+      input {
+        border: none !important;
+      }
+      input[maxlength="4"] {
+        margin-left: 41px;
+        width: 510px;
+        font-size: 24px;
+        border: 0;
+        margin-left: 60px;
+        letter-spacing: 106px;
+        outline: none;
+      }
+      input[maxlength="5"] {
+        color: transparent;
+        text-shadow: 0 0 0 #2196f3;
+      }
+      focus {
+        outline: none;
+      }
+
+      svg,
+      line {
+        position: relative;
+        display: block;
+        width: 510px;
+        height: 2px;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
+  </head>
+  <body>
+    <div class="die-inputs">
+      <form class="login-form" method="POST">
+        {% csrf_token%}
+        <h3>OTP login !</h3>
+        <div class="input-box">
+          <input type="text" id="field-name" name="otp" maxlength="4" />
+          <svg viewBox="0 0 240 1" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="0" x2="240" y2="0" stroke="black" />
+          </svg>
+        </div>
+        <div class="input-box">
+          <input type="submit" value="Verify" class="login" />
+        </div>
+        {% if messages%} {% for i in messages%}
+        <p id="error">{{i}}</p>
+        {%endfor%} {%endif%}
+      </form>
+    </div>
+  </body>
+</html>

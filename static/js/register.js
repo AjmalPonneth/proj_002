@@ -31,7 +31,7 @@ form.addEventListener("submit", (e) => {
           document.querySelector("#error").textContent =
             "This phone number already exists!"
         } else {
-          window.location.replace("login")
+          window.location.replace("otp_register")
         }
       })
   } else {

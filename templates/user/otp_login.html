@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
+    <script src="{% static 'js/otp_verify.js'%}"></script>
+  </head>
+  <body>
+    <div class="die-inputs">
+      <form class="login-form" action="{% url 'otp_ver'%}" method="POST">
+        {% csrf_token%}
+        <h3>OTP login !</h3>
+        <div class="input-box">
+          <input
+            type="tel"
+            name="phone"
+            id="username"
+            placeholder="Enter your phone number"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <input type="submit" value="Send otp" class="login" />
+        </div>
+        {% if messages%} {%for i in messages%}
+        <p id="error">{{i}}</p>
+        {%endfor%} {% endif%}
+      </form>
+    </div>
+  </body>
+</html>
