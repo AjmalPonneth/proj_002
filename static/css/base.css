@@ -101,7 +101,61 @@ label #cancel{
     padding: 10px;
     width: 15%;
 }
+.column
+{
+    width:25%;
+    float:left;
+    padding:40px 10px;
+}
 
+.row:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+
+
+.card
+{
+
+    max-width:300px;
+    margin:auto;
+    background-color:white;
+    text-align:center;
+    padding-bottom:15px;
+}
+
+.title
+{
+    color:#000;
+    font-size:18px;
+    background: rgb(178, 177, 231);
+    padding: 5px;
+    margin: 20px;
+}
+
+button
+{
+    border:none;
+    padding:8px;
+    display: inline-block;
+    color:#000;
+    background-color:transparent;
+    border: 1px solid #706FD3;
+    cursor:pointer;
+    width:70%;
+    font-size:18px;
+    text-align:center;
+}
+a{
+    text-decoration: none;
+    font-size:22px;
+    color:#000;
+}
+
+a:hover,button:hover{
+    opacity: 0.6;
+}
 @media(max-width:1200px){
     html{
         font-size: 55%;
@@ -115,5 +169,14 @@ label #cancel{
     }
     .button-area button{
         flex: 1;
+    }
+}
+@media screen and (max-width:600px)
+{
+    .column
+    {
+        width:100%;
+        display:block;
+        margin-bottom: 20px;
     }
 }

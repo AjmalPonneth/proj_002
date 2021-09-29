@@ -1,7 +1,51 @@
 {% extends 'user/base.html'%} {% load static%} {% block content%}
 <div class="button-area"></div>
 <div class="sessions">
-  <div class="each-session"></div>
+  <div class="column">
+    <div class="card">
+      <img
+        src="{% static 'images/1.jpg'%}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h1>Ami</h1>
+
+      <p class="title">Self Study</p>
+
+      <p>11-Jul-2012,9:30PM IST</p>
+      <p>Javascript, Intermidiate</p>
+      <br />
+      <p><button>Veiw Session Details</button></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img
+        src="{% static 'images/2.png'%}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h1>Json watson</h1>
+      <p class="title">Interview Preprations</p>
+
+      <p>11-Jul-2012,9:30PM IST</p>
+      <p>C#, Expert</p>
+      <br />
+      <p><button>Veiw Session Details</button></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img
+        src="{% static 'images/3.jpg'%}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h1>Shuana</h1>
+      <p class="title">Knowledge Sharing</p>
+      <p>11-Jul-2012, 9:30PM IST</p>
+      <p>Python, Expert</p>
+      <br />
+      <p><button>Veiw Session Details</button></p>
+    </div>
+  </div>
 </div>
 
 {% endblock%}
