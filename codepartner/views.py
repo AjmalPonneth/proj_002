@@ -138,8 +138,8 @@ class OTPVerfied(OTPVerificationView):
             .verification_checks \
             .create(to='+91'+num, code=otp)
         if verification_check.status == 'approved':
-            user = NewUser.objects.filter(phone_number=num)
-            auth.authenticate(request, username=user.email,
+            user = NewUser.objects.get(phone_number=num)
+            auth.authenticate(request, username=user.username,
                               password=user.password)
             auth.login(request, user,
                        backend='djago.contrib.auth.backends.ModelBackend')
