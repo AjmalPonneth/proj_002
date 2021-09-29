@@ -43,7 +43,7 @@ body {
     margin-bottom: 20px;
     width: 80%;
 }
-.login-form input[type=text],input[type=password],input[type=tel] {
+.login-form input {
     width: 100%;
     border: none;
     height: 6vh;
@@ -70,19 +70,41 @@ body {
 #otp:hover{
     color: red;
 }
-
+#sociallogin{
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    width: 100%;
+    height: 6vh;
+    color: #706FD3;
+    font-size: medium;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
 @media(max-width:1200px){
     html{
         font-size: 60%;
+    }
+    #sociallogin{
+        margin-left: 30px;
     }
 }
 @media(max-width:991px){
     .login-form{
         width: 30%;
     }
+    #sociallogin{
+        margin-left: 30px;
+        
+    }
 }
 @media (max-width:768px) {
     .login-form{
         width: 90%;
+    }
+    #sociallogin{
+        margin-left: 40px;
+        
     }
 }

@@ -4,6 +4,7 @@ from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import login as dj_login
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import NewUser
@@ -89,8 +90,10 @@ class RegisterOTP(View):
             .verification_checks \
             .create(to='+91'+num, code=otp)
         if verification_check.status == 'approved':
-            NewUser.objects.create(
+            NewUser(
                 username=username, email=email, phone_number=num, password=make_password(password))
+            user = NewUser.save()
+            dj_login(request, user)
             del username
             del email
             del num
@@ -139,10 +142,8 @@ class OTPVerfied(OTPVerificationView):
             .create(to='+91'+num, code=otp)
         if verification_check.status == 'approved':
             user = NewUser.objects.get(phone_number=num)
-            auth.authenticate(request, username=user.username,
-                              password=user.password)
-            auth.login(request, user,
-                       backend='djago.contrib.auth.backends.ModelBackend')
+            dj_login(
+                request, user, backend='codepartner.backend.CaseSensitiveModelBackend')
             return redirect('index')
         messages.info(request, 'Your otp is not valid')
         return redirect('verified')

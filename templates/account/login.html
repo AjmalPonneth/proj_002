@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,10 +20,10 @@
         <h3>Login Here!</h3>
         <div class="input-box">
           <input
-            type="text"
+            type="email"
             name="username"
             id="username"
-            placeholder="Username"
+            placeholder="Email"
             autocomplete="off"
             required
           />
@@ -41,6 +41,15 @@
         <div class="input-box">
           <input type="submit" value="Login" class="login" id="login" />
         </div>
+
+        <a
+          id="sociallogin"
+          href="{% provider_login_url 'google' %}"
+          role="button"
+          aria-pressed="true"
+          >Sign in with Google</a
+        >
+
         <p style="text-align: center">OR</p>
         <a href="{% url 'otp'%}" id="otp">Login With OTP</a>
         <p id="error"></p>

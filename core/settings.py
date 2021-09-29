@@ -63,7 +63,8 @@ ROOT_URLCONF = 'core.urls'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'codepartner.backend.CaseSensitiveModelBackend'
 ]
 
 TEMPLATES = [
