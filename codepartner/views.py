@@ -129,10 +129,9 @@ class OTPVerfied(OTPVerificationView):
     def post(self, request, *args, **kwargs):
         num = self.request.session['phone']
         otp = self.request.POST['otp']
-        account_sid = config('ACCOUNT_SID', cast=str)
-        auth_token = config('AUTH_TOKEN', cast=str)
+        account_sid = config('ACCOUNT_SID')
+        auth_token = config('AUTH_TOKEN')
         service_id = config('SERVICE_ID')
-        print(service_id)
         client = Client(account_sid, auth_token)
         verification_check = client.verify \
             .services(service_id) \

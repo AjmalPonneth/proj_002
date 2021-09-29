@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
 ##vscode
+.env
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

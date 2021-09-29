@@ -80,9 +80,10 @@ label #cancel{
     display: flex;
     justify-content: right;
     align-items: center;
+
 }
-.main-header p{
-    margin-right: 25px;
+.main-header p,a{
+    margin-right: 30px;
 }
 .button-area{
     display: flex;
