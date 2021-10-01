@@ -14,7 +14,7 @@ urlpatterns = [
     path('enter_otp', OTPVerfied.as_view(), name="verified"),
     path('index', IndexView.as_view(), name='index'),
     path('logout', LogoutView.as_view(), name='logout'),
-    path('reset_password', auth_views.PasswordResetView.as_view(),
+    path('reset_password', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html'),
          name='reset_password'),
     path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(),
          name='password_reset_done'),
