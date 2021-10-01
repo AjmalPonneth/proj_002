@@ -17,8 +17,7 @@ form.addEventListener("submit", (e) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success == false) {
-          document.getElementById("error").textContent =
-            "Username or password is incorrect!"
+          document.getElementById("error").style.display = "block"
         } else {
           window.location.replace("index")
         }

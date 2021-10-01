@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your models here.
 
 
@@ -39,3 +43,12 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name']
+
+
+@receiver(post_save, sender=NewUser)
+def register_user(sender, instance, created, **kwargs):
+    if created:
+        subject = 'Codepartner'
+        message = 'Hello! This is from codepartner, Your account crerated successfully!'
+        to = instance
+        return send_mail(subject, message, settings.EMAIL_HOST_USER, [to], fail_silently=False)

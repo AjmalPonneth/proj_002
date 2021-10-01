@@ -82,6 +82,12 @@ body {
     letter-spacing: 2px;
     cursor: pointer;
 }
+#forget{
+    position: relative;
+    left: 29%;
+    margin: 10px;
+    text-decoration: none;
+}
 @media(max-width:1200px){
     html{
         font-size: 60%;

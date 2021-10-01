@@ -12,6 +12,8 @@ from django.http import HttpResponse
 from twilio.rest import Client
 from django.contrib.auth.hashers import make_password
 from decouple import config
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 
@@ -90,10 +92,11 @@ class RegisterOTP(View):
             .verification_checks \
             .create(to='+91'+num, code=otp)
         if verification_check.status == 'approved':
-            NewUser(
-                username=username, email=email, phone_number=num, password=make_password(password))
-            user = NewUser.save()
-            dj_login(request, user)
+            user = NewUser(
+                username=username, email=email, phone_number=num, password=password)
+            user.save()
+            dj_login(request, user,
+                     'django.contrib.auth.backends.ModelBackend')
             del username
             del email
             del num
@@ -109,7 +112,7 @@ class OTPLoginView(TemplateView):
 
 class OTPVerificationView(View):
     def post(self, request, *args, **kwargs):
-        num = self.request.POST['phone']
+        num = self.request.POST['phone'].replace(" ", "")
         self.request.session['phone'] = num
         if NewUser.objects.filter(phone_number=num).exists():
             account_sid = config('ACCOUNT_SID')

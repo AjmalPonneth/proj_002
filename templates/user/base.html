@@ -35,11 +35,21 @@
       </ul>
     </div>
     <header class="main-header">
-      <a href="logout">Logout</a>
       <div class="username">
         <p style="text-transform: capitalize">{{request.user.username}}</p>
       </div>
+      <a id="logout" onclick="check()" style="cursor: pointer">Logout</a>
     </header>
     <section class="main__container">{% block content%} {% endblock %}</section>
   </body>
+  <script>
+    function check() {
+      x = confirm("Do you want to logout?")
+      if (x) {
+        document
+          .getElementById("logout")
+          .setAttribute("href", "{% url 'logout'%}")
+      }
+    }
+  </script>
 </html>

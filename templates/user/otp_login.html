@@ -11,8 +11,8 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
-    <script src="{% static 'js/otp_verify.js'%}"></script>
   </head>
   <body>
     <div class="die-inputs">
@@ -22,6 +22,7 @@
         <div class="input-box">
           <input
             type="tel"
+            class="phone"
             name="phone"
             id="username"
             placeholder="Enter your phone number"
@@ -37,5 +38,18 @@
         {%endfor%} {% endif%}
       </form>
     </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"
+      integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="{% static 'js/phone-type-formatter.in.js'%}"></script>
+    <script>
+      var cleave = new Cleave(".phone", {
+        phone: true,
+        phoneRegionCode: "IN",
+      })
+    </script>
   </body>
 </html>

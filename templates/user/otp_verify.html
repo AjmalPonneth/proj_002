@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <script src="{% static 'js/otp_verify.js'%}" defer></script>
+    <title>OTP login!</title>
     <style>
       input[maxlength="4"] + svg line {
         stroke-dasharray: 30;
@@ -52,7 +53,13 @@
         {% csrf_token%}
         <h3>OTP login !</h3>
         <div class="input-box">
-          <input type="text" id="field-name" name="otp" maxlength="4" />
+          <input
+            type="text"
+            id="field-name"
+            name="otp"
+            maxlength="4"
+            autofocus
+          />
           <svg viewBox="0 0 240 1" xmlns="http://www.w3.org/2000/svg">
             <line x1="0" y1="0" x2="240" y2="0" stroke="black" />
           </svg>

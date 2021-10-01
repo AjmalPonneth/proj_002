@@ -38,21 +38,23 @@
             required
           />
         </div>
+        <a href="" id="forget">Forget Password</a>
         <div class="input-box">
           <input type="submit" value="Login" class="login" id="login" />
         </div>
-
         <a
+          style="margin: auto"
           id="sociallogin"
           href="{% provider_login_url 'google' %}"
           role="button"
           aria-pressed="true"
           >Sign in with Google</a
         >
-
-        <p style="text-align: center">OR</p>
+        <p style="text-align: center; margin-top: 0">OR</p>
         <a href="{% url 'otp'%}" id="otp">Login With OTP</a>
-        <p id="error"></p>
+        <p id="error" style="display: none">
+          Username or password is incorrect!
+        </p>
         <p class="text">
           Don't Have An Account? <a href="{% url 'register'%}">Sign Up</a>
         </p>
