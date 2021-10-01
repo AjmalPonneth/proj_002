@@ -87,6 +87,7 @@ body {
     left: 29%;
     margin: 10px;
     text-decoration: none;
+    font-weight: 600;
 }
 @media(max-width:1200px){
     html{
@@ -94,6 +95,9 @@ body {
     }
     #sociallogin{
         margin-left: 30px;
+    }
+    #forget{
+        left: 28%;
     }
 }
 @media(max-width:991px){
@@ -104,6 +108,9 @@ body {
         margin-left: 30px;
         
     }
+    #forget{
+        left: 28%;
+    }
 }
 @media (max-width:768px) {
     .login-form{
@@ -112,5 +119,8 @@ body {
     #sociallogin{
         margin-left: 40px;
         
+    }
+    #forget{
+        left: 26%;
     }
 }
