@@ -14,35 +14,64 @@
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}" />
     <script src="{% static 'js/main_page.js'%}" defer></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      defer
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      defer
+    ></script>
   </head>
   <body>
-    <input type="checkbox" id="check" />
-    <label for="check" id="test">
-      <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-      <header>< / ></header>
+    <div class="navigation">
       <ul>
-        <li><a href="">Find Your Partner</a></li>
-        <li><a href="">Add Your Time Slot</a></li>
-        <li>
-          <a href="">Upcoming Sessions</a>
+        <li class="list active">
+          <a href="#">
+            <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
+            <span class="title">Add Your Time Slot</span>
+          </a>
         </li>
-        <li>
-          <a href="">Pending Session</a>
+        <li class="list">
+          <a href="#">
+            <span class="icon">
+              <ion-icon name="search-outline"></ion-icon>
+            </span>
+            <span class="title">Find Partner</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="calendar-outline"></ion-icon
+            ></span>
+            <span class="title"> Upcoming Sessions</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="calendar-clear-outline"></ion-icon
+            ></span>
+            <span class="title">Pending Sessions</span>
+          </a>
         </li>
       </ul>
     </div>
-    <header class="main-header">
-      <div class="username">
-        <p style="text-transform: capitalize">{{request.user.username}}</p>
-      </div>
-      <a id="logout" onclick="check()" style="cursor: pointer">Logout</a>
-    </header>
-    <section class="main__container">{% block content%} {% endblock %}</section>
   </body>
   <script>
+    let list = document.querySelectorAll(".list")
+    for (let i = 0; i < list.length; i++) {
+      list[i].onclick = function () {
+        let j = 0
+        while (j < list.length) {
+          list[j++].className = "list"
+        }
+        list[i].className = "lisst active"
+      }
+    }
     function check() {
       x = confirm("Do you want to logout?")
       if (x) {

@@ -13,6 +13,12 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}" />
     <script src="{% static 'js/login.js'%}" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="die-inputs">
@@ -42,14 +48,17 @@
         <div class="input-box">
           <input type="submit" value="Login" class="login" id="login" />
         </div>
-        <a
-          style="margin: auto"
-          id="sociallogin"
-          href="{% provider_login_url 'google' %}"
-          role="button"
-          aria-pressed="true"
-          >Sign in with Google</a
-        >
+        <div class="input-box google">
+          <a
+            style="margin: auto"
+            id="sociallogin"
+            href="{% provider_login_url 'google' %}"
+            role="button"
+            aria-pressed="true"
+          >
+            <i class="fab fa-google"></i>&nbsp;Sign in with Google</a
+          >
+        </div>
         <p style="text-align: center; margin-top: 0">OR</p>
         <a href="{% url 'otp'%}" id="otp">Login With OTP</a>
         <p id="error" style="display: none">

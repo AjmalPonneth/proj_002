@@ -9,174 +9,59 @@
 body{
     background: #eee;
 }
-.sidebar{
+.navigation{
     position: fixed;
-    left: -250px;
-    width: 250px;
-    height: 100%;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 300px;
     background: #fff;
-    transition: all .5s ease;
+    box-sizing: initial;
+    transition: width 0.5s;
 }
-.sidebar header{
-    font-size: 22px;
-    color: #706FD3;
-    text-align: center;
-    line-height: 70px;
-    font-size: medium;
-    user-select: none;
-    font-weight: bold;
-}
-.sidebar ul a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    font-size: 20px;
-    padding-left: 40px;
-    box-sizing: border-box;
-    /* border-top: 1px solid gray; */
-    padding: 20px;
-}
-
-#check{
-    display: none;
-}
-label #btn, label #cancel{
+.navigation ul{
     position: absolute;
-    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 40px;
+}
+.navigation ul li{
+    position: relative;
+    list-style: none;
+    width: 100%;
+}
+.navigation ul li.active{
     background: #eee;
 }
-label #btn{
-    left: 40px;
-    top: 25px;
-    font-size: 35px;
-    color: #fff;
-    color: #000;
-    padding: 6px 12px;
-    transition: all .5s;
-}
-label #cancel{
-    z-index: 1111;
-    left: -195px;
-    top: 17px;
-    font-size: 30px;
-    padding: 4px 9px;
-    transition: all .5s ease;
-}
-#check:checked ~ .sidebar{
-    left: 0;
-}
-#check:checked ~ label #btn{
-    left: 250px;
-    opacity: 0;
-    pointer-events: none;
-}
-#check:checked ~ label #cancel{
-    left: 195px;
-}
-.main-header{
-    background: #fff;
+.navigation ul li a{
+    position: relative;
+    display: block;
     width: 100%;
-    height: 10vh;
     display: flex;
-    justify-content: right;
-    align-items: center;
-
-}
-.main-header p,a{
-    margin-right: 30px;
-}
-.button-area{
-    display: flex;
-    width: 100%;
-    height: 5vh;
-    background: #fff;
-    align-items: center;
-}
-.button-area button{
-    margin-left: 250px;
-    margin-bottom: 20px;
-    border: none;
-    color: #fff;
-    background: #706FD3;
-    padding: 10px;
-    width: 15%;
-}
-.column
-{
-    width:25%;
-    float:left;
-    padding:40px 10px;
-}
-
-.row:after{
-    content:"";
-    display:table;
-    clear:both;
-}
-
-
-.card
-{
-
-    max-width:300px;
-    margin:auto;
-    background-color:white;
-    text-align:center;
-    padding-bottom:15px;
-}
-
-.title
-{
-    color:#000;
-    font-size:18px;
-    background: rgb(178, 177, 231);
-    padding: 5px;
-    margin: 20px;
-}
-
-button
-{
-    border:none;
-    padding:8px;
-    display: inline-block;
-    color:#000;
-    background-color:transparent;
-    border: 1px solid #706FD3;
-    cursor:pointer;
-    width:70%;
-    font-size:18px;
-    text-align:center;
-}
-a{
     text-decoration: none;
-    font-size:22px;
-    color:#000;
+    color: #000;
 }
-
-a:hover,button:hover{
-    opacity: 0.6;
+.navigation ul li.active a{
+    color: #333;
 }
-@media(max-width:1200px){
-    html{
-        font-size: 55%;
-    }
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 70px;
+    text-align: center ;
 }
-@media(max-width:768px){
-    .button-area{
-        justify-content: right;
-        align-items: center;
-        
-    }
-    .button-area button{
-        flex: 1;
-    }
+.navigation ul li a .icon ion-icon{
+    font-size: 1.5rem ;
 }
-@media screen and (max-width:600px)
-{
-    .column
-    {
-        width:100%;
-        display:block;
-        margin-bottom: 20px;
-    }
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    white-space: normal;
 }
