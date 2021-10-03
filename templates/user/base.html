@@ -60,8 +60,18 @@
         </li>
       </ul>
     </div>
+    <div class="toggle">
+      <ion-icon name="menu-outline" class="open"></ion-icon>
+      <ion-icon name="close-outline" class="close"></ion-icon>
+    </div>
   </body>
   <script>
+    let menuToggle = document.querySelector(".toggle")
+    let nav = document.querySelector(".navigation")
+    menuToggle.onclick = function () {
+      menuToggle.classList.toggle("active")
+      nav.classList.toggle("active")
+    }
     let list = document.querySelectorAll(".list")
     for (let i = 0; i < list.length; i++) {
       list[i].onclick = function () {
