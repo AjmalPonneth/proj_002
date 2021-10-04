@@ -93,7 +93,7 @@ class RegisterOTP(View):
             .create(to='+91'+num, code=otp)
         if verification_check.status == 'approved':
             user = NewUser(
-                username=username, email=email, phone_number=num, password=password)
+                username=username, email=email, phone_number=num, password=make_password(password))
             user.save()
             dj_login(request, user,
                      'django.contrib.auth.backends.ModelBackend')

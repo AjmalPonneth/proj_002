@@ -13,82 +13,67 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}" />
-    <script src="{% static 'js/main_page.js'%}" defer></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-      defer
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-      defer
-    ></script>
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="navigation">
-      <ul>
-        <li class="list active">
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo_name">Code Partner</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
           <a href="#">
-            <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
-            <span class="title">Add Your Time Slot</span>
+            <i class="bx bx-calendar-plus"></i>
+            <span class="links_name">Add Time Slot</span>
           </a>
+          <span class="tooltip">Add Time Slot</span>
         </li>
-        <li class="list">
+        <li>
           <a href="#">
-            <span class="icon">
-              <ion-icon name="search-outline"></ion-icon>
-            </span>
-            <span class="title">Find Partner</span>
+            <i class="bx bx-code-block"></i>
+            <span class="links_name">Find Partner</span>
           </a>
+          <span class="tooltip">Find Partner</span>
         </li>
-        <li class="list">
+        <li>
           <a href="#">
-            <span class="icon"
-              ><ion-icon name="calendar-outline"></ion-icon
-            ></span>
-            <span class="title"> Upcoming Sessions</span>
+            <i class="bx bxs-calendar-check"></i>
+            <span class="links_name">Upcoming Session</span>
           </a>
+          <span class="tooltip">Upcoming Session</span>
         </li>
-        <li class="list">
+        <li>
           <a href="#">
-            <span class="icon"
-              ><ion-icon name="calendar-clear-outline"></ion-icon
-            ></span>
-            <span class="title">Pending Sessions</span>
+            <i class="bx bxs-calendar-event"></i>
+            <span class="links_name">Pending Session</span>
           </a>
+          <span class="tooltip">Pending Session</span>
         </li>
       </ul>
     </div>
-    <div class="toggle">
-      <ion-icon name="menu-outline" class="open"></ion-icon>
-      <ion-icon name="close-outline" class="close"></ion-icon>
-    </div>
-  </body>
-  <script>
-    let menuToggle = document.querySelector(".toggle")
-    let nav = document.querySelector(".navigation")
-    menuToggle.onclick = function () {
-      menuToggle.classList.toggle("active")
-      nav.classList.toggle("active")
-    }
-    let list = document.querySelectorAll(".list")
-    for (let i = 0; i < list.length; i++) {
-      list[i].onclick = function () {
-        let j = 0
-        while (j < list.length) {
-          list[j++].className = "list"
+
+    <section class="home-section">{% block content%}{%endblock%}</section>
+    <script>
+      let sidebar = document.querySelector(".sidebar")
+      let closeBtn = document.querySelector("#btn")
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open")
+        menuBtnChange() //calling the function(optional)
+      })
+
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+        if (sidebar.classList.contains("open")) {
+          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right") //replacing the iocns class
+        } else {
+          closeBtn.classList.replace("bx-menu-alt-right", "bx-menu") //replacing the iocns class
         }
-        list[i].className = "lisst active"
       }
-    }
-    function check() {
-      x = confirm("Do you want to logout?")
-      if (x) {
-        document
-          .getElementById("logout")
-          .setAttribute("href", "{% url 'logout'%}")
-      }
-    }
-  </script>
+    </script>
+  </body>
 </html>

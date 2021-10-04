@@ -1,5 +1,12 @@
 {% extends 'user/base.html'%} {% load static%} {% block content%}
-<div class="button-area"></div>
+<header>
+  <nav>
+    <ul class="user-info">
+      <li><a href="">{{request.user}}</a></li>
+      <li><a href="">Logout</a></li>
+    </ul>
+  </nav>
+</header>
 <div class="sessions">
   <div class="column">
     <div class="card">
@@ -9,27 +16,12 @@
       />
       <h1>Ami</h1>
 
-      <p class="title">Self Study</p>
+      <p class="session-type">Self Study</p>
 
       <p>11-Jul-2012,9:30PM IST</p>
       <p>Javascript, Intermidiate</p>
       <br />
-      <p><button>Veiw Session Details</button></p>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img
-        src="{% static 'images/2.png'%}"
-        style="width: 150px; height: auto; padding-top: 10px"
-      />
-      <h1>Json watson</h1>
-      <p class="title">Interview Preprations</p>
-
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>C#, Expert</p>
-      <br />
-      <p><button>Veiw Session Details</button></p>
+      <p><button class="view-session">Veiw Session Details</button></p>
     </div>
   </div>
   <div class="column">
@@ -39,13 +31,46 @@
         style="width: 150px; height: auto; padding-top: 10px"
       />
       <h1>Shuana</h1>
-      <p class="title">Knowledge Sharing</p>
-      <p>11-Jul-2012, 9:30PM IST</p>
-      <p>Python, Expert</p>
+
+      <p class="session-type">Self Study</p>
+
+      <p>11-Jul-2012,9:30PM IST</p>
+      <p>Javascript, Intermidiate</p>
       <br />
-      <p><button>Veiw Session Details</button></p>
+      <p><button class="view-session">Veiw Session Details</button></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img
+        src="{% static 'images/4.png'%}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h1>Shahil</h1>
+
+      <p class="session-type">Self Study</p>
+
+      <p>11-Jul-2012,9:30PM IST</p>
+      <p>Javascript, Intermidiate</p>
+      <br />
+      <p><button class="view-session">Veiw Session Details</button></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img
+        src="{% static 'images/2.png'%}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h1>Ahamed</h1>
+
+      <p class="session-type">Self Study</p>
+
+      <p>11-Jul-2012,9:30PM IST</p>
+      <p>Javascript, Intermidiate</p>
+      <br />
+      <p><button class="view-session">Veiw Session Details</button></p>
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 {% endblock%}
