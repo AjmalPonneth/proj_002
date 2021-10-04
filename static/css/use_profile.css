@@ -1,0 +1,13 @@
+.profile{
+    background: #fff;
+    margin: 60px;
+    height: 100vh;
+    width: 40%;
+}
+.profile header{
+    
+}
+.profile header h3{
+    text-align: center;
+    margin: 20px;
+}

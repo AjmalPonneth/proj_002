@@ -17,8 +17,17 @@
       href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{% static 'css/use_profile.css'%}" />
   </head>
   <body>
+    <header>
+      <nav>
+        <ul class="user-info">
+          <li><a href="">{{request.user.username}}</a></li>
+          <li><a href="">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
     <div class="sidebar">
       <div class="logo-details">
         <div class="logo_name">Code Partner</div>
@@ -55,7 +64,6 @@
         </li>
       </ul>
     </div>
-
     <section class="home-section">{% block content%}{%endblock%}</section>
     <script>
       let sidebar = document.querySelector(".sidebar")

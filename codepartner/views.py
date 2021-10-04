@@ -160,6 +160,10 @@ class IndexView(LoginRequiredMixin, View):
         return render(request, 'user/index.html')
 
 
+class ProfileView(TemplateView):
+    template_name = 'user/user_profile.html'
+
+
 class LogoutView(View):
     url = 'login'
 

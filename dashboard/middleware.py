@@ -1,5 +1,5 @@
-# from django.db.models import F
-# from .models import newstats
+from django.db.models import F
+from .models import newstats
 
 
 class DemoMiddleware:

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP
+from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -22,4 +22,5 @@ urlpatterns = [
          name='password_reset_confirm'),
     path('reset_password_complete', auth_views.PasswordResetCompleteView.as_view(template_name='account/password_reset_complete.html'
                                                                                  ), name='password_reset_complete'),
+    path('user_profile', ProfileView.as_view(), name='user_profile')
 ]
