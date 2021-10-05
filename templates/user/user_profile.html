@@ -1,7 +1,86 @@
 {%extends 'user/base.html'%} {%load static %} {% block content%}
-<div class="profile">
-  <header>
-    <h3>My Profile</h3>
-  </header>
+<div class="container">
+  <div class="profile">
+    <header>
+      <h3>My Profile</h3>
+    </header>
+    <div class="details">
+      <form action="" class="profile-form">
+        <div class="firstname">
+          <label for="firstname">Firstname</label>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            value="{{request.user.first_name}}"
+          />
+        </div>
+        <div class="username">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value="{{request.user.username}}"
+          />
+        </div>
+        <div class="email">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="{{request.user}}"
+          />
+        </div>
+        <div class="phone">
+          <label for="tel">Phone</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            value="{{request.user.phone_number}}"
+          />
+        </div>
+      </form>
+    </div>
+
+    <div class="about">
+      <header>
+        <h3 style="text-align: center">About Me</h3>
+      </header>
+      <form action="">
+        <div class="experience">
+          <label for="exp">Experience in years: </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+        <div class="skills">
+          <label for="exp">Skills: </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+        <div class="goal">
+          <label for="exp"
+            >What goals you want to achieve from CodePartner sessions:
+          </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+        <div class="best">
+          <label for="exp">The best thing I love about coding: </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+        <div class="project">
+          <label for="exp"
+            >TA recent project that I have been working on:
+          </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+        <div class="fav">
+          <label for="exp">My favourite programming language: </label>
+          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="profile-image"></div>
 </div>
 {% endblock%}

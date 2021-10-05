@@ -1,13 +1,55 @@
-.profile{
-    background: #fff;
-    margin: 60px;
-    height: 100vh;
-    width: 40%;
+.container{
+    display: flex;
 }
-.profile header{
-    
+
+.profile{
+    background: #F7FAFC;
+    margin: 50px;
+    height: auto;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 10px #000;
+}
+.profile-image{
+    margin: 60px;
+    background: #fff;
+    height: 300px;
+    width: 300px;
 }
 .profile header h3{
     text-align: center;
     margin: 20px;
+}
+.details{
+    margin: 20px;
+    display: table;
+}
+.firstname,.username,.email,.phone{
+    margin: 10px;
+    display: table-cell;
+}
+input{
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+.experience,.skills,.goal,.best,.project,.fav{
+    width: 100%;
+}
+.about{
+    margin: 20px;
+}
+.about input {
+    width: 100%;
+}
+.about label {
+    display: block;
+    font-size: 15px;
+}
+@media (max-width:768px) {
+    .details .profile-form{
+        display: flex;
+        flex-direction: column;
+    }
 }

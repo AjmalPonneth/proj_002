@@ -39,6 +39,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=10, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_newuser = models.BooleanField(default=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
