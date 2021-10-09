@@ -137,7 +137,7 @@
 .home-section{
   position: relative;
   background: #eee;
-  height: 100vh;
+  height: auto;
   overflow: hidden;
   top: 0;
   left: 78px;
@@ -223,17 +223,24 @@ nav{
     margin: 20px;
 }
 
-@media (max-width: 420px) {
+@media screen and (max-width:900px){
+  .column{
+    width: 33%;
+  }
+}
+
+/* tablets */
+@media screen and (max-width:768px){
+  .column{
+    width: 50%;
+  }
+}
+/* mobiles */
+@media screen and (max-width:480px){
   .sidebar li .tooltip{
     display: none;
   }
-}
-@media screen and (max-width:600px)
-  {
-      .column
-      {
-          width:100%;
-          display:block;
-          margin-bottom: 20px;
-      }
+  .column{
+    width: 90%;
   }
+}

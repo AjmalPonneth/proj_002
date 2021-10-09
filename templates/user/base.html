@@ -18,6 +18,20 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static 'css/use_profile.css'%}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+      defer
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/user_profile.js'%}" defer></script>
   </head>
   <body>
     <header>
@@ -71,10 +85,9 @@
 
       closeBtn.addEventListener("click", () => {
         sidebar.classList.toggle("open")
-        menuBtnChange() //calling the function(optional)
+        menuBtnChange()
       })
 
-      // following are the code to change sidebar button(optional)
       function menuBtnChange() {
         if (sidebar.classList.contains("open")) {
           closeBtn.classList.replace("bx-menu", "bx-menu-alt-right") //replacing the iocns class

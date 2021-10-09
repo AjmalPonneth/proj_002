@@ -160,8 +160,20 @@ class IndexView(LoginRequiredMixin, View):
         return render(request, 'user/index.html')
 
 
-class ProfileView(TemplateView):
-    template_name = 'user/user_profile.html'
+class ProfileView(View):
+    def get(self, request, *args, **kwargs):
+        print(NewUser.objects.filter(self.request.user))
+        return render(request, 'user/user_profile.html')
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(self.request.body)
+        first_name = data['first_name']
+        phone = data['phone']
+        if len(first_name) > 1:
+            user = NewUser.objects.filter(self.request.user)
+            print(user)
+            user.save()
+        return JsonResponse({'success': True}, safe=False)
 
 
 class LogoutView(View):

@@ -2,10 +2,12 @@
 <div class="container">
   <div class="profile">
     <header>
-      <h3>My Profile</h3>
+      <h3 class="skeleton-text">My Profile</h3>
+      <br />
     </header>
     <div class="details">
-      <form action="" class="profile-form">
+      <form action="" class="profile-form" id="profile-form">
+        {%csrf_token%}
         <div class="firstname">
           <label for="firstname">Firstname</label>
           <input
@@ -22,6 +24,7 @@
             name="username"
             id="username"
             value="{{request.user.username}}"
+            disabled
           />
         </div>
         <div class="email">
@@ -31,56 +34,88 @@
             name="email"
             id="email"
             value="{{request.user}}"
+            disabled
           />
         </div>
         <div class="phone">
           <label for="tel">Phone</label>
           <input
-            type="text"
-            name="email"
-            id="email"
+            type="tel"
+            name="phone"
+            id="phone"
             value="{{request.user.phone_number}}"
           />
         </div>
-      </form>
-    </div>
 
-    <div class="about">
-      <header>
-        <h3 style="text-align: center">About Me</h3>
-      </header>
-      <form action="">
-        <div class="experience">
-          <label for="exp">Experience in years: </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
-        </div>
-        <div class="skills">
-          <label for="exp">Skills: </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
-        </div>
-        <div class="goal">
-          <label for="exp"
-            >What goals you want to achieve from CodePartner sessions:
-          </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
-        </div>
-        <div class="best">
-          <label for="exp">The best thing I love about coding: </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
-        </div>
-        <div class="project">
-          <label for="exp"
-            >TA recent project that I have been working on:
-          </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
-        </div>
-        <div class="fav">
-          <label for="exp">My favourite programming language: </label>
-          <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+        <div class="about">
+          <header>
+            <h3 style="text-align: center">About Me</h3>
+            <br />
+          </header>
+          <div class="experience">
+            <label for="exp">Experience in years: </label>
+            <input type="number" min="1" maxlength="1" name="exp" id="exp" />
+          </div>
+          <div class="skills">
+            <label for="skills">Skills: </label>
+            <select name="skills" id="skills" multiple="multiple">
+              <option value="python">Python</option>
+              <option value="javascript">JavaScript</option>
+              <option value="java">Java</option>
+              <option value="c">C</option>
+              <option value="c++">C++</option>
+              <option value="c#">C#</option>
+              <option value="android">Android</option>
+              <option value="ios">iOS</option>
+              <option value="firebase">Firebase</option>
+              <option value="sql">Sql</option>
+            </select>
+          </div>
+          <div class="goal">
+            <label for="goal"
+              >What goals you want to achieve from CodePartner sessions:
+            </label>
+            <input type="text" name="goal" id="goal" />
+          </div>
+          <div class="best">
+            <label for="best">The best thing I love about coding: </label>
+            <input type="text" name="best" id="best" />
+          </div>
+          <div class="project">
+            <label for="project"
+              >TA recent project that I have been working on:
+            </label>
+            <input type="text" name="project" id="project" />
+          </div>
+          <div class="fav">
+            <label for="fav">My favourite programming language: </label>
+            <input type="text" name="fav" id="fav" />
+          </div>
+          <div class="submit">
+            <input type="submit" value="Update" id="update-btn" />
+          </div>
         </div>
       </form>
     </div>
   </div>
-  <div class="profile-image"></div>
+  <div class="profile-image">
+    <div class="display-picture">
+      <img src="{{request.user.image.url}}" alt="profile" id="user-image" />
+    </div>
+    <h3>{{request.user.username}}</h3>
+    <br />
+    <div class="profile-upload">
+      <input type="file" name="dp" id="dp" />
+    </div>
+  </div>
 </div>
+<script>
+  $(document).ready(function () {
+    $("#skills").select2({
+      placeholder: "Select your skills",
+      allowClear: true,
+      maximumSelectionLength: 6,
+    })
+  })
+</script>
 {% endblock%}

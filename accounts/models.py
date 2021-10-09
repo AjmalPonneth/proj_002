@@ -37,6 +37,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=150, blank=True)
     startdate = models.DateTimeField(default=timezone.now)
     phone_number = models.CharField(max_length=10, blank=True)
+    image = models.ImageField(default="user_profiles/default.png",
+                              upload_to="profile_pcics")
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_newuser = models.BooleanField(default=True)
