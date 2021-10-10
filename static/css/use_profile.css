@@ -90,7 +90,7 @@ input{
     margin: 20px;
 }
 .profile-image{
-    width: auto;
+    width: 40%;
     height: 450px;
     display: flex;
     flex-direction: column;
@@ -107,12 +107,21 @@ input{
 input[type=submit]{
     cursor: pointer;
 }
-@media (max-width:768px) {
-    .container{
-        flex-direction: column;
+.messages{
+    margin: 20px;
+}
+#error{
+    color: red;
+    font-size: 16px;
+}
+/* tablets */
+@media screen and (max-width:768px){
+    .profile-image{
+        width: 30%;
     }
-    .details .profile-form{
-        display: flex;
-        flex-direction: column;
-    }
+}
+
+/* mobile */
+@media screen and (max-width:480px){
+    
 }

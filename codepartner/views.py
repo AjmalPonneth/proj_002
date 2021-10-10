@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import auth
 from django.contrib.auth import login as dj_login
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,7 +12,6 @@ from django.http import HttpResponse
 from twilio.rest import Client
 from django.contrib.auth.hashers import make_password
 from decouple import config
-from django.core.mail import send_mail
 from django.conf import settings
 # Create your views here.
 
@@ -162,17 +161,27 @@ class IndexView(LoginRequiredMixin, View):
 
 class ProfileView(View):
     def get(self, request, *args, **kwargs):
-        print(NewUser.objects.filter(self.request.user))
         return render(request, 'user/user_profile.html')
 
     def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
         first_name = data['first_name']
         phone = data['phone']
+        print(data)
+        # Firstname
         if len(first_name) > 1:
-            user = NewUser.objects.filter(self.request.user)
-            print(user)
-            user.save()
+            user = NewUser.objects.filter(
+                email=self.request.user).update(first_name=first_name)
+        # Phone
+        if NewUser.objects.filter(phone_number=phone).exists():
+            return JsonResponse({'phone_exists': True})
+        else:
+            NewUser.objects.filter(
+                email=self.request.user).update(phone_number=phone)
+        # User Exp
+        if user_exp:
+            NewUser.objects.filter(
+                email=self.request.user).update(user_exp=user_exp)
         return JsonResponse({'success': True}, safe=False)
 
 

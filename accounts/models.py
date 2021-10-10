@@ -42,6 +42,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_newuser = models.BooleanField(default=True)
+    user_exp = models.IntegerField(blank=True, default=0)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
