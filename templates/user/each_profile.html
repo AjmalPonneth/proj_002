@@ -14,7 +14,8 @@
             type="text"
             name="firstname"
             id="firstname"
-            value="{{request.user.first_name}}"
+            value="{{object.first_name}}"
+            disabled
           />
         </div>
         <div class="username">
@@ -23,7 +24,7 @@
             type="text"
             name="username"
             id="username"
-            value="{{request.user.username}}"
+            value="{{object.username}}"
             disabled
           />
         </div>
@@ -33,7 +34,7 @@
             type="email"
             name="email"
             id="email"
-            value="{{request.user}}"
+            value="{{object}}"
             disabled
           />
         </div>
@@ -43,7 +44,8 @@
             type="tel"
             name="phone"
             id="phone"
-            value="{{request.user.phone_number}}"
+            value="{{object.phone_number}}"
+            disabled
           />
         </div>
 
@@ -60,12 +62,13 @@
               max="10"
               name="exp"
               id="exp"
-              value="{{request.user.user_exp}}"
+              value="{{object.user_exp}}"
+              disabled
             />
           </div>
           <div class="skills">
             <label for="skills">Skills: </label>
-            <select name="skills" id="skills" multiple="multiple">
+            <select name="skills" id="skills" multiple="multiple" disabled>
               <option value="python">Python</option>
               <option value="javascript">JavaScript</option>
               <option value="java">Java</option>
@@ -82,27 +85,21 @@
             <label for="goal"
               >What goals you want to achieve from CodePartner sessions:
             </label>
-            <input type="text" name="goal" id="goal" />
+            <input type="text" name="goal" id="goal" disabled />
           </div>
           <div class="best">
             <label for="best">The best thing I love about coding: </label>
-            <input type="text" name="best" id="best" />
+            <input type="text" name="best" id="best" disabled />
           </div>
           <div class="project">
             <label for="project"
               >TA recent project that I have been working on:
             </label>
-            <input type="text" name="project" id="project" />
+            <input type="text" name="project" id="project" disabled />
           </div>
           <div class="fav">
             <label for="fav">My favourite programming language: </label>
-            <input type="text" name="fav" id="fav" />
-          </div>
-          <div class="messages">
-            <p id="error"></p>
-          </div>
-          <div class="submit">
-            <input type="submit" value="Update" id="update-btn" />
+            <input type="text" name="fav" id="fav" disabled />
           </div>
         </div>
       </form>
@@ -110,19 +107,16 @@
   </div>
   <div class="profile-image">
     <div class="display-picture">
-      <img src="{{request.user.image.url}}" alt="profile" id="user-image" />
+      <img src="{{object.image.url}}" alt="profile" id="user-image" />
     </div>
-    <h3>{{request.user.username}}</h3>
+    <h3>{{object.username}}</h3>
     <br />
-    <div class="profile-upload">
-      <input type="file" name="dp" id="dp" />
-    </div>
   </div>
 </div>
 <script>
   $(document).ready(function () {
     $("#skills").select2({
-      placeholder: "Select your skills",
+      placeholder: "skills",
       allowClear: true,
       maximumSelectionLength: 6,
     })

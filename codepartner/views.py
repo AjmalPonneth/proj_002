@@ -13,6 +13,7 @@ from twilio.rest import Client
 from django.contrib.auth.hashers import make_password
 from decouple import config
 from django.conf import settings
+from django.views.generic.detail import DetailView
 # Create your views here.
 
 
@@ -183,6 +184,10 @@ class ProfileView(View):
             NewUser.objects.filter(
                 email=self.request.user).update(user_exp=user_exp)
         return JsonResponse({'success': True}, safe=False)
+
+
+class EachUserProfile(DetailView):
+    model = NewUser
 
 
 class LogoutView(View):
