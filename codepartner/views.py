@@ -168,13 +168,14 @@ class ProfileView(View):
         data = json.loads(self.request.body)
         first_name = data['first_name']
         phone = data['phone']
-        print(data)
+        user_exp = data['user_exp']
+        print(user_exp)
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
                 email=self.request.user).update(first_name=first_name)
         # Phone
-        if NewUser.objects.filter(phone_number=phone).exists():
+        if NewUser.objects.exclude(email=self.request.user).filter(phone_number=phone).exists():
             return JsonResponse({'phone_exists': True})
         else:
             NewUser.objects.filter(
@@ -183,6 +184,8 @@ class ProfileView(View):
         if user_exp:
             NewUser.objects.filter(
                 email=self.request.user).update(user_exp=user_exp)
+
+        # Skills
         return JsonResponse({'success': True}, safe=False)
 
 

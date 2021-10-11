@@ -3,7 +3,9 @@ form.addEventListener("submit", (e) => {
   e.preventDefault()
   const first_name = document.querySelector("#firstname").value
   const phone = document.querySelector("#phone").value
-  const user_exp = document.getElementById("#exp").value
+  const user_exp = document.getElementById("exp").value
+  const user_skills = document.getElementById("skills")
+
   fetch("user_profile", {
     headers: {
       "Content-Type": "application/json",
@@ -20,6 +22,8 @@ form.addEventListener("submit", (e) => {
       if (data.phone_exists == true) {
         document.querySelector("#error").textContent =
           "This phone number is already in use!"
+      } else {
+        document.querySelector("#error").textContent = ""
       }
     })
 })
