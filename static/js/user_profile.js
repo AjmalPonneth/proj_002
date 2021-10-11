@@ -4,8 +4,10 @@ form.addEventListener("submit", (e) => {
   const first_name = document.querySelector("#firstname").value
   const phone = document.querySelector("#phone").value
   const user_exp = document.getElementById("exp").value
-  const user_skills = document.getElementById("skills")
-
+  const user_goal = document.getElementById("goal").value
+  const user_best = document.getElementById("best").value
+  const user_current_project = document.getElementById("project").value
+  const user_fav_lang = document.getElementById("fav").value
   fetch("user_profile", {
     headers: {
       "Content-Type": "application/json",
@@ -14,6 +16,10 @@ form.addEventListener("submit", (e) => {
       first_name: first_name,
       phone: phone,
       user_exp: parseInt(user_exp),
+      user_goal: user_goal,
+      user_best: user_best,
+      user_current_project: user_current_project,
+      user_fav_lang: user_fav_lang,
     }),
     method: "POST",
   })
@@ -24,6 +30,7 @@ form.addEventListener("submit", (e) => {
           "This phone number is already in use!"
       } else {
         document.querySelector("#error").textContent = ""
+        window.location.reload()
       }
     })
 })

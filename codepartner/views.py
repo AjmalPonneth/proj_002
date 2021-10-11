@@ -166,10 +166,13 @@ class ProfileView(View):
 
     def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
-        first_name = data['first_name']
-        phone = data['phone']
-        user_exp = data['user_exp']
-        print(user_exp)
+        first_name = data.get('first_name')
+        phone = data.get('phone')
+        user_exp = data.get('user_exp')
+        user_goal = data.get('user_goal')
+        user_best = data.get('user_best')
+        user_current_project = data.get('user_current_project')
+        user_fav_lang = data.get('user_fav_lang')
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -186,6 +189,21 @@ class ProfileView(View):
                 email=self.request.user).update(user_exp=user_exp)
 
         # Skills
+        # User goal
+        if user_goal:
+            NewUser.objects.filter(email=request.user).update(goal=user_goal)
+        # User best thing about coding
+        if user_best:
+            NewUser.objects.filter(email=request.user).update(
+                best_thing=user_best)
+        # User current project
+        if user_current_project:
+            NewUser.objects.filter(email=request.user).update(
+                current_project=user_current_project)
+        # User fav language
+        if user_fav_lang:
+            NewUser.objects.filter(email=request.user).update(
+                fav_language=user_fav_lang)
         return JsonResponse({'success': True}, safe=False)
 
 

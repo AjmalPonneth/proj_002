@@ -82,21 +82,41 @@
             <label for="goal"
               >What goals you want to achieve from CodePartner sessions:
             </label>
-            <input type="text" name="goal" id="goal" />
+            <input
+              type="text"
+              name="goal"
+              id="goal"
+              value="{{request.user.goal}}"
+            />
           </div>
           <div class="best">
             <label for="best">The best thing I love about coding: </label>
-            <input type="text" name="best" id="best" />
+            <input
+              type="text"
+              name="best"
+              id="best"
+              value="{{request.user.best_thing}}"
+            />
           </div>
           <div class="project">
             <label for="project"
               >TA recent project that I have been working on:
             </label>
-            <input type="text" name="project" id="project" />
+            <input
+              type="text"
+              name="project"
+              id="project"
+              value="{{request.user.current_project}}"
+            />
           </div>
           <div class="fav">
             <label for="fav">My favourite programming language: </label>
-            <input type="text" name="fav" id="fav" />
+            <input
+              type="text"
+              name="fav"
+              id="fav"
+              value="{{request.user.fav_language}}"
+            />
           </div>
           <div class="messages">
             <p id="error"></p>

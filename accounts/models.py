@@ -45,6 +45,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     user_exp = models.IntegerField(blank=True, default=0)
     goal = models.CharField(max_length=100, blank=True, null=True)
     best_thing = models.CharField(max_length=100, blank=True, null=True)
+    current_project = models.CharField(max_length=100, blank=True, null=True)
     fav_language = models.CharField(max_length=50, blank=True, null=True)
     objects = CustomAccountManager()
 
