@@ -140,16 +140,18 @@
   </div>
 </div>
 <script>
-  $("#skills").selectize({
-    plugins: ["remove_button"],
-    delimiter: ",",
-    persist: false,
-    create: function (input) {
-      return {
-        value: input,
-        text: input,
-      }
-    },
+  $(document).ready(function () {
+    $("#skills").selectize({
+      plugins: ["remove_button"],
+      delimiter: ",",
+      persist: false,
+      create: function (input) {
+        return {
+          value: input,
+          text: input,
+        }
+      },
+    })
   })
 </script>
 {% endblock%}
