@@ -160,7 +160,7 @@ class IndexView(LoginRequiredMixin, View):
         return render(request, 'user/index.html')
 
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'user/user_profile.html')
 
@@ -207,7 +207,7 @@ class ProfileView(View):
         return JsonResponse({'success': True}, safe=False)
 
 
-class EachUserProfile(DetailView):
+class EachUserProfile(LoginRequiredMixin, DetailView):
     model = NewUser
 
 

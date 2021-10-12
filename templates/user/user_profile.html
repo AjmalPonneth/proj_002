@@ -140,12 +140,16 @@
   </div>
 </div>
 <script>
-  $(document).ready(function () {
-    $("#skills").select2({
-      placeholder: "Select your skills",
-      allowClear: true,
-      maximumSelectionLength: 6,
-    })
+  $("#skills").selectize({
+    plugins: ["remove_button"],
+    delimiter: ",",
+    persist: false,
+    create: function (input) {
+      return {
+        value: input,
+        text: input,
+      }
+    },
   })
 </script>
 {% endblock%}

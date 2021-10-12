@@ -85,21 +85,45 @@
             <label for="goal"
               >What goals you want to achieve from CodePartner sessions:
             </label>
-            <input type="text" name="goal" id="goal" disabled />
+            <input
+              type="text"
+              name="goal"
+              id="goal"
+              value="{{object.goal}}"
+              disabled
+            />
           </div>
           <div class="best">
             <label for="best">The best thing I love about coding: </label>
-            <input type="text" name="best" id="best" disabled />
+            <input
+              type="text"
+              name="best"
+              id="best"
+              value="{{object.best_thing}}"
+              disabled
+            />
           </div>
           <div class="project">
             <label for="project"
               >TA recent project that I have been working on:
             </label>
-            <input type="text" name="project" id="project" disabled />
+            <input
+              type="text"
+              name="project"
+              id="project"
+              value="{{object.current_project}}"
+              disabled
+            />
           </div>
           <div class="fav">
             <label for="fav">My favourite programming language: </label>
-            <input type="text" name="fav" id="fav" disabled />
+            <input
+              type="text"
+              name="fav"
+              id="fav"
+              value="{{object.fav_language}}"
+              disabled
+            />
           </div>
         </div>
       </form>
@@ -113,13 +137,5 @@
     <br />
   </div>
 </div>
-<script>
-  $(document).ready(function () {
-    $("#skills").select2({
-      placeholder: "skills",
-      allowClear: true,
-      maximumSelectionLength: 6,
-    })
-  })
-</script>
+
 {% endblock%}
