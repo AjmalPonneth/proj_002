@@ -6,7 +6,6 @@
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
 }
-
 .sidebar{
   position: fixed;
   left: 0;
@@ -143,7 +142,6 @@
   left: 78px;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
-  z-index: 2;
 }
 .sidebar.open ~ .home-section{
   left: 250px;
@@ -158,9 +156,10 @@
 }
 .column
 {
+    
     width:25%;
     float:left;
-    padding:100px 10px;
+    padding:55px 10px;
 }
 
 .row:after{
@@ -170,6 +169,7 @@
 }
 .card
 {
+    margin: 0px;
     max-width:300px;
     margin:auto;
     background-color:white;
@@ -222,7 +222,6 @@ nav{
 .user-info li{
     margin: 20px;
 }
-
 
 @media screen and (max-width:900px){
   .column{

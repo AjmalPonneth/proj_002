@@ -1,8 +1,9 @@
-.container{
+.containers{
     display: flex;
-    width: 100%;
+    flex-direction: row;
     height: auto;
-    overflow: scroll;
+    gap: 30px;
+    width: 100%;
 }
 
 .profile{
@@ -16,7 +17,7 @@
 .profile-image{
     margin: 60px;
     background: #fff;
-    height: 400px;
+    height: 500px;
     width: auto;
 }
 .profile header h3{
@@ -87,7 +88,7 @@ input[type=submit]{
 #error{
     color: red;
     font-size: 16px;
-}
+}  
 /* tablets */
 @media screen and (max-width:768px){
     .profile-image{

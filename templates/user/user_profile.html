@@ -1,5 +1,6 @@
 {%extends 'user/base.html'%} {%load static %} {% block content%}
-<div class="container">
+
+<div class="containers">
   <div class="profile">
     <header>
       <h3 class="skeleton-text">My Profile</h3>
@@ -46,7 +47,6 @@
             value="{{request.user.phone_number}}"
           />
         </div>
-
         <div class="about">
           <header>
             <h3 style="text-align: center">About Me</h3>
@@ -64,18 +64,19 @@
             />
           </div>
           <div class="skills">
+            <div id="values"></div>
             <label for="skills">Skills: </label>
             <select name="skills" id="skills" multiple="multiple">
               <option value="python">Python</option>
-              <option value="javascript">JavaScript</option>
-              <option value="java">Java</option>
+              <option value="javascript">Javascript</option>
+              <option value="php">PHP</option>
               <option value="c">C</option>
+              <option value="java">Java</option>
               <option value="c++">C++</option>
               <option value="c#">C#</option>
-              <option value="android">Android</option>
-              <option value="ios">iOS</option>
-              <option value="firebase">Firebase</option>
-              <option value="sql">Sql</option>
+              <option value="ruby">Ruby</option>
+              <option value="gO">GO</option>
+              <option value="r">R</option>
             </select>
           </div>
           <div class="goal">

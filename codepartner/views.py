@@ -14,6 +14,7 @@ from django.contrib.auth.hashers import make_password
 from decouple import config
 from django.conf import settings
 from django.views.generic.detail import DetailView
+from .models import UserSkills
 # Create your views here.
 
 
@@ -173,6 +174,7 @@ class ProfileView(LoginRequiredMixin, View):
         user_best = data.get('user_best')
         user_current_project = data.get('user_current_project')
         user_fav_lang = data.get('user_fav_lang')
+        user_skills = data['user_skills']
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -189,6 +191,30 @@ class ProfileView(LoginRequiredMixin, View):
                 email=self.request.user).update(user_exp=user_exp)
 
         # Skills
+
+        if user_skills:
+            if len(user_skills) == 10:
+                UserSkills.objects.create(
+                    user=self.request.user, python=True, javascript=True, php=True, java=True, cpp=True, csharp=True, ruby=True, go=True, r=True)
+            else:
+                skill = UserSkills(user=self.request.user)
+                if 'python' in user_skills:
+                    skill.python = True
+                if 'javascript' in user_skills:
+                    skill.javascript = True
+                if 'php' in user_skills:
+                    skill.php = True
+                if 'java' in user_skills:
+                    skill.java = True
+                if 'cpp' in user_skills:
+                    skill.cpp = True
+                if 'ruby' in user_skills:
+                    skill.ruby = True
+                if 'go' in user_skills:
+                    skill.go = True
+                if 'r' in user_skills:
+                    skill.r = True
+                skill.save()
         # User goal
         if user_goal:
             NewUser.objects.filter(email=request.user).update(goal=user_goal)
