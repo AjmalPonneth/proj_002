@@ -33,8 +33,10 @@
     <header>
       <nav>
         <ul class="user-info">
-          <li><a href="">{{request.user.username}}</a></li>
-          <li><a href="">Logout</a></li>
+          <li>
+            <a href="{% url 'user_profile'%}">{{request.user.username}}</a>
+          </li>
+          <li><a href="{% url 'logout'%}">Logout</a></li>
         </ul>
       </nav>
     </header>

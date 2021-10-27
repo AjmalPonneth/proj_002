@@ -66,18 +66,7 @@
           <div class="skills">
             <div id="values"></div>
             <label for="skills">Skills: </label>
-            <select name="skills" id="skills" multiple="multiple">
-              <option value="python">Python</option>
-              <option value="javascript">Javascript</option>
-              <option value="php">PHP</option>
-              <option value="c">C</option>
-              <option value="java">Java</option>
-              <option value="c++">C++</option>
-              <option value="c#">C#</option>
-              <option value="ruby">Ruby</option>
-              <option value="gO">GO</option>
-              <option value="r">R</option>
-            </select>
+            <select name="skills" id="skills" multiple="multiple"></select>
           </div>
           <div class="goal">
             <label for="goal"
@@ -139,20 +128,30 @@
       <input type="file" name="dp" id="dp" />
     </div>
   </div>
-</div>
-<script>
-  $(document).ready(function () {
-    $("#skills").selectize({
-      plugins: ["remove_button"],
-      delimiter: ",",
-      persist: false,
-      create: function (input) {
-        return {
-          value: input,
-          text: input,
-        }
-      },
+  <script>
+    $(document).ready(function () {
+      var select = $("#skills").selectize({
+        plugins: ["remove_button"],
+        delimiter: ",",
+        persist: false,
+        maxItems: null,
+        valueField: "title",
+        labelField: "title",
+        searchField: "title",
+        options: [
+          { id: 1, title: "Python" },
+          { id: 2, title: "Javascript" },
+          { id: 3, title: "PHP" },
+          { id: 4, title: "Java" },
+          { id: 5, title: "C++" },
+          { id: 6, title: "C#" },
+          { id: 7, title: "Ruby" },
+          { id: 8, title: "Go" },
+          { id: 9, title: "R" },
+        ],
+      })
+      $(document).on("click", "#update-btn", function () {})
     })
-  })
-</script>
+  </script>
+</div>
 {% endblock%}

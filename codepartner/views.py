@@ -15,6 +15,7 @@ from decouple import config
 from django.conf import settings
 from django.views.generic.detail import DetailView
 from .models import UserSkills
+from django.core import serializers
 # Create your views here.
 
 
@@ -162,6 +163,9 @@ class IndexView(LoginRequiredMixin, View):
 
 
 class ProfileView(LoginRequiredMixin, View):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     def get(self, request, *args, **kwargs):
         return render(request, 'user/user_profile.html')
 
@@ -189,51 +193,37 @@ class ProfileView(LoginRequiredMixin, View):
         if user_exp:
             NewUser.objects.filter(
                 email=self.request.user).update(user_exp=user_exp)
-
-        # Skills
-
+        # User Skills
         if user_skills:
-            if len(user_skills) == 10:
-                UserSkills.objects.create(
-                    user=self.request.user, python=True, javascript=True, php=True, java=True, cpp=True, csharp=True, ruby=True, go=True, r=True)
-            else:
-                skill = UserSkills(user=self.request.user)
-                if 'python' in user_skills:
-                    skill.python = True
-                if 'javascript' in user_skills:
-                    skill.javascript = True
-                if 'php' in user_skills:
-                    skill.php = True
-                if 'java' in user_skills:
-                    skill.java = True
-                if 'cpp' in user_skills:
-                    skill.cpp = True
-                if 'ruby' in user_skills:
-                    skill.ruby = True
-                if 'go' in user_skills:
-                    skill.go = True
-                if 'r' in user_skills:
-                    skill.r = True
-                skill.save()
+            print(user_skills)
         # User goal
         if user_goal:
-            NewUser.objects.filter(email=request.user).update(goal=user_goal)
+            NewUser.objects.filter(
+                email=self.request.user).update(goal=user_goal)
         # User best thing about coding
         if user_best:
-            NewUser.objects.filter(email=request.user).update(
+            NewUser.objects.filter(email=self.request.user).update(
                 best_thing=user_best)
         # User current project
         if user_current_project:
-            NewUser.objects.filter(email=request.user).update(
+            NewUser.objects.filter(email=self.request.user).update(
                 current_project=user_current_project)
         # User fav language
         if user_fav_lang:
-            NewUser.objects.filter(email=request.user).update(
+            NewUser.objects.filter(email=self.request.user).update(
                 fav_language=user_fav_lang)
+        # user_profile_image
         return JsonResponse({'success': True}, safe=False)
 
 
+class UserSkillsView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({'success': True})
+
+
 class EachUserProfile(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
     model = NewUser
 
 
