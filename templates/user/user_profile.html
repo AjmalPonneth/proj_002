@@ -119,14 +119,23 @@
     </div>
   </div>
   <div class="profile-image">
-    <div class="display-picture">
-      <img src="{{request.user.image.url}}" alt="profile" id="user-image" />
-    </div>
+    <img
+      src="{{request.user.image.url}}"
+      width="60%"
+      alt="profile"
+      id="user-image"
+    />
+
     <h3>{{request.user.username}}</h3>
     <br />
-    <div class="profile-upload">
-      <input type="file" name="dp" id="dp" />
-    </div>
+    <label for="dp" id="dp-label">Choose a file</label>
+    <input
+      type="file"
+      name="dp"
+      id="dp"
+      accept="image/png, image/jpeg"
+      hidden
+    />
   </div>
   <script>
     $(document).ready(function () {
@@ -149,8 +158,18 @@
           { id: 8, title: "Go" },
           { id: 9, title: "R" },
         ],
+        create: false,
+        onInitialize: function () {
+          $.get("user_skills", function (res) {
+            let selectize = select[0].selectize
+            let selected = []
+            $.each(res.skills, function (i, obj) {
+              selected.push(obj)
+            })
+            selectize.setValue(selected)
+          })
+        },
       })
-      $(document).on("click", "#update-btn", function () {})
     })
   </script>
 </div>

@@ -10,7 +10,7 @@
     background: #F7FAFC;
     margin: 50px;
     height: auto;
-    width: min-content;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 10px #000;
 }
@@ -83,7 +83,6 @@ input {
     border-radius: 10px;
 }
 
-
 input[type=submit] {
     cursor: pointer;
 }
@@ -105,8 +104,11 @@ input[type=submit] {
         flex-direction: column-reverse;
     } 
     .profile-image{
-        width: 100%;
+        width: 80%;
         height: 700px;
+    }
+    .profile{
+        width: 80%;
     }
 }
 

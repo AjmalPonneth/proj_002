@@ -16,6 +16,7 @@ from django.conf import settings
 from django.views.generic.detail import DetailView
 from .models import UserSkills
 from django.core import serializers
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 
 
@@ -178,7 +179,7 @@ class ProfileView(LoginRequiredMixin, View):
         user_best = data.get('user_best')
         user_current_project = data.get('user_current_project')
         user_fav_lang = data.get('user_fav_lang')
-        user_skills = data['user_skills']
+        user_skills = data.get('user_skills')
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -193,9 +194,6 @@ class ProfileView(LoginRequiredMixin, View):
         if user_exp:
             NewUser.objects.filter(
                 email=self.request.user).update(user_exp=user_exp)
-        # User Skills
-        if user_skills:
-            print(user_skills)
         # User goal
         if user_goal:
             NewUser.objects.filter(
@@ -212,13 +210,33 @@ class ProfileView(LoginRequiredMixin, View):
         if user_fav_lang:
             NewUser.objects.filter(email=self.request.user).update(
                 fav_language=user_fav_lang)
-        # user_profile_image
+
         return JsonResponse({'success': True}, safe=False)
 
 
 class UserSkillsView(View):
     def get(self, request, *args, **kwargs):
-        return JsonResponse({'success': True})
+        qs = UserSkills.objects.get(user=self.request.user)
+        user_skills = []
+        if qs.python:
+            user_skills.append("Python")
+        if qs.javascript:
+            user_skills.append("Javascript")
+        if qs.php:
+            user_skills.append("PHP")
+        if qs.java:
+            user_skills.append("Java")
+        if qs.cpp:
+            user_skills.append("C++")
+        if qs.csharp:
+            user_skills.append("C#")
+        if qs.ruby:
+            user_skills.append("Ruby")
+        if qs.go:
+            user_skills.append("Go")
+        if qs.r:
+            user_skills.append("R")
+        return JsonResponse({'skills': user_skills})
 
 
 class EachUserProfile(LoginRequiredMixin, DetailView):
