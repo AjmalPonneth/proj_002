@@ -158,7 +158,7 @@
           { id: 8, title: "Go" },
           { id: 9, title: "R" },
         ],
-        create: false,
+        //initializing skill
         onInitialize: function () {
           $.get("user_skills", function (res) {
             let selectize = select[0].selectize
@@ -168,6 +168,19 @@
             })
             selectize.setValue(selected)
           })
+        },
+        //adding skills
+        onChange: function (value) {
+          console.log(value)
+          fetch("create_skills", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              skills: value,
+            }),
+          }).then((res) => res.json())
         },
       })
     })

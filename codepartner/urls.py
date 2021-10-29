@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView
+from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -26,4 +26,6 @@ urlpatterns = [
                                                                                  ), name='password_reset_complete'),
     path('user_profile', csrf_exempt(ProfileView.as_view()), name='user_profile'),
     path('user_skills', UserSkillsView.as_view(), name='skills_view'),
+    path('create_skills', csrf_exempt(
+        CreateUserSkill.as_view()), name='create_skills'),
 ]

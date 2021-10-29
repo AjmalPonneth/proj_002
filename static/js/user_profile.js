@@ -9,11 +9,6 @@ form.addEventListener("submit", (e) => {
   const user_current_project = document.getElementById("project").value
   const user_fav_lang = document.getElementById("fav").value
   const user_image = document.getElementById("dp").files[0]
-  const user_skills = Array.prototype.slice
-    .call(document.querySelectorAll("#skills option:checked"), 0)
-    .map(function (v, i, a) {
-      return v.value
-    })
   fetch("user_profile", {
     headers: {
       "Content-Type": "application/json",
@@ -26,9 +21,7 @@ form.addEventListener("submit", (e) => {
       user_best: user_best,
       user_current_project: user_current_project,
       user_fav_lang: user_fav_lang,
-      user_skills: user_skills,
       user_image: user_image,
-      user_skills: user_skills,
     }),
     method: "POST",
   }).then((res) => {
@@ -43,5 +36,4 @@ form.addEventListener("submit", (e) => {
       }
     }
   })
-})
-//user profile
+}) // end of form submit event listener

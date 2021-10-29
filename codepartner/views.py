@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views import View
 from django.http import HttpResponse, JsonResponse
@@ -179,7 +179,6 @@ class ProfileView(LoginRequiredMixin, View):
         user_best = data.get('user_best')
         user_current_project = data.get('user_current_project')
         user_fav_lang = data.get('user_fav_lang')
-        user_skills = data.get('user_skills')
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -212,6 +211,68 @@ class ProfileView(LoginRequiredMixin, View):
                 fav_language=user_fav_lang)
 
         return JsonResponse({'success': True}, safe=False)
+
+
+class CreateUserSkill(View):
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(self.request.body)
+        skills = data.get('skills')
+        if "Python" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                python=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                python=False)
+        if "Javascript" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                javascript=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                javascript=False)
+        if "Java" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                java=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                java=False)
+        if "C++" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                cpp=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                cpp=False)
+        if "C#" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                csharp=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                csharp=False)
+        if "PHP" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                php=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                php=False)
+        if "Ruby" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                ruby=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                ruby=False)
+        if "GO" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                go=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                go=False)
+        if "R" in skills:
+            UserSkills.objects.filter(user=self.request.user).update(
+                r=True)
+        else:
+            UserSkills.objects.filter(user=self.request.user).update(
+                r=False)
+        return JsonResponse({'success': True})
 
 
 class UserSkillsView(View):
