@@ -1,0 +1,39 @@
+.session_create {}
+
+.create_form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.goal, .language, .level, .desc, .date, .time {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+select {
+    border: none;
+    width: 20%;
+    margin: 10px 0 10px 0;
+}
+
+textarea {
+    border: none;
+    width: 50%;
+    height: 40vh;
+}
+
+.session_create_btn {
+    background-color: #706FD3;
+    color: #fff;
+    border-radius: 0;
+}
+
+.error {
+    color: red;
+    margin: 5px 0 0 10px;
+}

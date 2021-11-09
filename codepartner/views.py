@@ -15,6 +15,8 @@ from django.conf import settings
 from django.views.generic.detail import DetailView
 from .models import UserSkills
 from accounts.forms import ProfileImageForm
+from django.views.generic.edit import FormView
+from .forms import SessionForm
 # Create your views here.
 
 
@@ -303,6 +305,12 @@ class EachUserProfile(LoginRequiredMixin, DetailView):
     login_url = 'login'
     redirect_field_name = 'redirect_to'
     model = NewUser
+
+
+class SessionCreateView(FormView):
+    template_name = 'user/session_create.html'
+    form_class = SessionForm
+    success_url = 'index'
 
 
 class LogoutView(View):

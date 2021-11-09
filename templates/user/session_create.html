@@ -1,0 +1,58 @@
+{% extends 'user/base.html'%}
+{%load static%}
+{% block content%}
+<head>
+    <link rel="stylesheet" href="{%static 'css/create.css'%}">
+</head>
+<div class="session_create">
+    <form class="create_form" method="POST">
+        {% csrf_token %}
+        <div class="goal">
+            <label for="">{{form.goal.label}}: </label>
+            {{form.goal}}
+            <div class="error">
+                {{form.goal.errors}}
+            </div>
+        </div>
+        <div class="language">
+            <label for="id_language">{{form.language.label}}: </label>
+            {{form.language}}
+            <div class="error">
+                {{form.language.errors}}
+            </div>
+        </div>
+        <div class="level">
+            <label for="id_level">{{form.level.label}}: </label>
+            {{form.level}}
+            <div class="error">
+                {{form.level.errors}}
+            </div>
+        </div>
+        <div class="desc">
+            <label for="id_desc">{{form.desc.label}}: </label>
+            {{form.desc}}
+            <div class="error">
+                {{form.desc.errors}}
+            </div>
+        </div>
+        <div class="date">
+            <label for="id_date">{{form.date.label}}: </label>
+            {{form.date}}
+            <div class="error">
+                {{form.date.errors}}
+            </div>
+        </div>
+        <div class="time">
+            <label for="id_time">{{form.time.label}}: </label>
+            {{form.time}}
+            <div class="error">
+                {{form.time.errors}}
+            </div>
+        </div>
+        <div class="submit">
+            <input class="session_create_btn" type="submit" value="Create">
+        </div>
+    </form>
+</div>
+
+{% endblock%}

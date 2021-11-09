@@ -47,9 +47,9 @@ class Session(models.Model):
         ('Advanced', 'Advanced'),
     )
     user = models.ForeignKey(
-        NewUser, on_delete=models.CASCADE, related_name="session_creator")
+        NewUser, on_delete=models.CASCADE, related_name="session_creator", blank=False)
     book = models.ForeignKey(
-        NewUser, on_delete=models.CASCADE, related_name="session_book")
+        NewUser, on_delete=models.CASCADE, related_name="session_book", blank=True)
     goal = models.CharField(blank=False, max_length=100, choices=goal_choices)
     language = models.CharField(
         blank=False, max_length=100, choices=language_choices)
