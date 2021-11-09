@@ -1,3 +1,4 @@
+//form submit
 let form = document.getElementById("profile-form")
 form.addEventListener("submit", (e) => {
   e.preventDefault()
@@ -8,7 +9,6 @@ form.addEventListener("submit", (e) => {
   const user_best = document.getElementById("best").value
   const user_current_project = document.getElementById("project").value
   const user_fav_lang = document.getElementById("fav").value
-  const user_image = document.getElementById("dp").files[0]
   fetch("user_profile", {
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,6 @@ form.addEventListener("submit", (e) => {
       user_best: user_best,
       user_current_project: user_current_project,
       user_fav_lang: user_fav_lang,
-      user_image: user_image,
     }),
     method: "POST",
   }).then((res) => {
@@ -32,7 +31,7 @@ form.addEventListener("submit", (e) => {
           "This phone number is already in use!"
       } else {
         document.querySelector("#error").textContent = ""
-        // window.location.reload()
+        window.location.reload()
       }
     }
   })

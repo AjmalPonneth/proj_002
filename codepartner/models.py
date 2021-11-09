@@ -18,3 +18,47 @@ class UserSkills(models.Model):
 
     def __str__(self):
         return self.user.email
+
+
+class Session(models.Model):
+    goal_choices = (
+        ('Self-Study', 'Self-Study'),
+        ('Interview Prepration', 'Interview Prepration'),
+        ('Competitive Programming', 'Competitive Programming'),
+        ('Newbie Coding', 'Newbie Coding'),
+        ('Knowledge Sharing', 'Knowledge Sharing'),
+        ('Other', 'Other'),
+    )
+    language_choices = (
+        ('Python', 'Python'),
+        ('Javascript', 'Javascript'),
+        ('C', 'C'),
+        ('C#', 'C#'),
+        ('C++', 'C++'),
+        ('Java', 'Java'),
+        ('PHP', 'PHP'),
+        ('R', 'R'),
+        ('Go', 'Go'),
+        ('Other', 'Other'),
+    )
+    level_choices = (
+        ('Beginner', 'Beginner'),
+        ('Intermediate', 'Intermediate'),
+        ('Advanced', 'Advanced'),
+    )
+    user = models.ForeignKey(
+        NewUser, on_delete=models.CASCADE, related_name="session_creator")
+    book = models.ForeignKey(
+        NewUser, on_delete=models.CASCADE, related_name="session_book")
+    goal = models.CharField(blank=False, max_length=100, choices=goal_choices)
+    language = models.CharField(
+        blank=False, max_length=100, choices=language_choices)
+    level = models.CharField(
+        blank=False, max_length=100, choices=level_choices)
+    desc = models.TextField(blank=False)
+    date = models.DateField(blank=False)
+    time = models.TimeField(blank=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "".join(self.language, "--", self.level)

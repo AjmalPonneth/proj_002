@@ -1,22 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views import View
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import auth
 from django.contrib.auth import login as dj_login
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import NewUser
-from django.http import HttpResponse
 from twilio.rest import Client
 from django.contrib.auth.hashers import make_password
 from decouple import config
 from django.conf import settings
 from django.views.generic.detail import DetailView
 from .models import UserSkills
-from django.core import serializers
-from django.core.files.storage import FileSystemStorage
+from accounts.forms import ProfileImageForm
 # Create your views here.
 
 
@@ -133,6 +131,7 @@ class OTPVerificationView(View):
 
 class OTPVerfied(OTPVerificationView):
     def get(self, request, *args, **kwargs):
+
         return render(request, 'user/otp_verify.html')
 
     def post(self, request, *args, **kwargs):
@@ -179,6 +178,7 @@ class ProfileView(LoginRequiredMixin, View):
         user_best = data.get('user_best')
         user_current_project = data.get('user_current_project')
         user_fav_lang = data.get('user_fav_lang')
+        user_image = data.get('image')
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -209,7 +209,6 @@ class ProfileView(LoginRequiredMixin, View):
         if user_fav_lang:
             NewUser.objects.filter(email=self.request.user).update(
                 fav_language=user_fav_lang)
-
         return JsonResponse({'success': True}, safe=False)
 
 

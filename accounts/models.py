@@ -47,8 +47,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     best_thing = models.CharField(max_length=100, blank=True, null=True)
     current_project = models.CharField(max_length=100, blank=True, null=True)
     fav_language = models.CharField(max_length=50, blank=True, null=True)
-    user_skills = models.ForeignKey(
-        "codepartner.UserSkills", on_delete=models.CASCADE, blank=True, null=True)
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'

@@ -128,15 +128,11 @@
 
     <h3>{{request.user.username}}</h3>
     <br />
-    <label for="dp" id="dp-label">Choose a file</label>
-    <input
-      type="file"
-      name="dp"
-      id="dp"
-      accept="image/png, image/jpeg"
-      hidden
-    />
+    <form action="" method="POST" id="image-form" enctype="multipart/form-data">
+      {{form.image}}
+    </form>
   </div>
+
   <script>
     $(document).ready(function () {
       var select = $("#skills").selectize({
@@ -171,7 +167,6 @@
         },
         //adding skills
         onChange: function (value) {
-          console.log(value)
           fetch("create_skills", {
             method: "POST",
             headers: {
@@ -182,6 +177,19 @@
             }),
           }).then((res) => res.json())
         },
+      })
+      const form = $("#image-form")
+      $(document).on("submit", form, function (e) {
+        e.preventDefault()
+        $.ajax({
+          url: "user_image",
+          type: "POST",
+          dataType: "json",
+          data: $("#image-form").serialize(),
+          success: function (resp) {
+            console.log(resp)
+          },
+        })
       })
     })
   </script>

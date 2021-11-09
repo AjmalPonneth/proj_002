@@ -40,7 +40,7 @@ input {
 }
 
 .experience, .skills, .goal, .best, .project, .fav {
-    width: 100%;
+    max-width: 100%;
 }
 
 .about {
@@ -94,6 +94,7 @@ input[type=submit] {
     color: red;
     font-size: 16px;
 }
+
 
 /* tablets */
 
