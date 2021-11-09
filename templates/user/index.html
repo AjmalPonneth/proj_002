@@ -1,84 +1,22 @@
 {% extends 'user/base.html'%} {% load static%} {% block content%}
 <div class="sessions">
+  {% for i in session%}
   <div class="column">
     <div class="card">
       <img
-        src="{% static 'images/1.jpg'%}"
+        src="{{i.user.image.url}}"
         style="width: 150px; height: auto; padding-top: 10px"
       />
-      <h1>Ami</h1>
+      <h1>{{i.user.username}}</h1>
 
-      <p class="session-type">Self Study</p>
+      <p class="session-type">{{i.goal}}</p>
 
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>Javascript, Intermidiate</p>
+      <p>{{i.language}}, {{i.level}}</p>
+      <p>{{i.date}}, {{i.time}}</p>
       <br />
       <p><button class="view-session">Veiw Session Details</button></p>
     </div>
   </div>
-  <div class="column">
-    <div class="card">
-      <img
-        src="{% static 'images/3.jpg'%}"
-        style="width: 150px; height: auto; padding-top: 10px"
-      />
-      <h1>Shuana</h1>
-
-      <p class="session-type">Self Study</p>
-
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>Javascript, Intermidiate</p>
-      <br />
-      <p><button class="view-session">Veiw Session Details</button></p>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img
-        src="{% static 'images/4.png'%}"
-        style="width: 150px; height: auto; padding-top: 10px"
-      />
-      <h1>Shahil</h1>
-
-      <p class="session-type">Self Study</p>
-
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>Javascript, Intermidiate</p>
-      <br />
-      <p><button class="view-session">Veiw Session Details</button></p>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img
-        src="{% static 'images/2.png'%}"
-        style="width: 150px; height: auto; padding-top: 10px"
-      />
-      <h1>Ahamed</h1>
-
-      <p class="session-type">Self Study</p>
-
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>Javascript, Intermidiate</p>
-      <br />
-      <p><button class="view-session">Veiw Session Details</button></p>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img
-        src="{% static 'images/2.png'%}"
-        style="width: 150px; height: auto; padding-top: 10px"
-      />
-      <h1>Ahamed</h1>
-
-      <p class="session-type">Self Study</p>
-
-      <p>11-Jul-2012,9:30PM IST</p>
-      <p>Javascript, Intermidiate</p>
-      <br />
-      <p><button class="view-session">Veiw Session Details</button></p>
-    </div>
-  </div>
+  {%endfor%}
 </div>
 {% endblock%}

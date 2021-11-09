@@ -13,10 +13,13 @@ from django.contrib.auth.hashers import make_password
 from decouple import config
 from django.conf import settings
 from django.views.generic.detail import DetailView
-from .models import UserSkills
+from .models import *
 from accounts.forms import ProfileImageForm
 from django.views.generic.edit import FormView
 from .forms import SessionForm
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 # Create your views here.
 
 
@@ -161,7 +164,8 @@ class IndexView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'user/index.html')
+        qs = Session.objects.all()
+        return render(request, 'user/index.html', {'session': qs})
 
 
 class ProfileView(LoginRequiredMixin, View):
@@ -311,6 +315,23 @@ class SessionCreateView(FormView):
     template_name = 'user/session_create.html'
     form_class = SessionForm
     success_url = 'index'
+
+    def form_valid(self, form):
+        Session.objects.create(
+            user=self.request.user, goal=form.cleaned_data.get('goal'), language=form.cleaned_data.get('language'), level=form.cleaned_data.get('level'), desc=form.cleaned_data.get('desc'), date=form.cleaned_data.get('date'), time=form.cleaned_data.get('time'))
+        subject = "We have received your request for the CodePartner session. The details of the session are as follows:"
+        context = {
+            'type': form.cleaned_data.get('goal'),
+            'language': form.cleaned_data.get('language'),
+            'level': form.cleaned_data.get('level'),
+            'desc': form.cleaned_data.get('desc'),
+        }
+        email_body = render_to_string('user/emailmessage.txt', context)
+        send_mail(
+            subject, email_body,
+            settings.EMAIL_HOST_USER, [self.request.user]
+        )
+        return super().form_valid(form)
 
 
 class LogoutView(View):

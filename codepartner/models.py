@@ -49,7 +49,7 @@ class Session(models.Model):
     user = models.ForeignKey(
         NewUser, on_delete=models.CASCADE, related_name="session_creator", blank=False)
     book = models.ForeignKey(
-        NewUser, on_delete=models.CASCADE, related_name="session_book", blank=True)
+        NewUser, on_delete=models.CASCADE, related_name="session_book", blank=True, null=True)
     goal = models.CharField(blank=False, max_length=100, choices=goal_choices)
     language = models.CharField(
         blank=False, max_length=100, choices=language_choices)
@@ -61,4 +61,4 @@ class Session(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "".join(self.language, "--", self.level)
+        return "{} -- {}".format(self.language, self.level)

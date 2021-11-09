@@ -1,0 +1,7 @@
+Goal: {{goal|safe}}
+Language/Technology: {{language|safe}}
+Level: {{level|safe}}
+Description: {{description|safe}}
+Please wait for your partner to accept your request.
+Once your booking is confirmed, we will send you a confirmation email :)
+Good Luck!

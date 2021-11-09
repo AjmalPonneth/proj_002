@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import UserSkills
+from .models import *
 # Register your models here.
-admin.site.register(UserSkills)
+admin.site.register([UserSkills, Session])
