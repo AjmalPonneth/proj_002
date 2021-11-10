@@ -25,6 +25,7 @@ textarea {
     border: none;
     width: 50%;
     height: 40vh;
+    resize: none;
 }
 
 .session_create_btn {

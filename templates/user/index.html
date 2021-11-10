@@ -14,7 +14,15 @@
       <p>{{i.language}}, {{i.level}}</p>
       <p>{{i.date}}, {{i.time}}</p>
       <br />
-      <p><button class="view-session">Veiw Session Details</button></p>
+      {% if i.user == request.user%}
+      <p><button class="view-session">Delete Session</button></p>
+      {%else%}
+      <p>
+        <a href="{% url 'session_detail' i.id%}" class="view-session"
+          >View Session</a
+        >
+      </p>
+      {%endif%}
     </div>
   </div>
   {%endfor%}

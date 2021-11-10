@@ -1,0 +1,37 @@
+{% extends 'user/base.html'%} {%load static%} {% block content%}
+<head>
+  <link rel="stylesheet" href="{%static 'css/create.css'%}" />
+</head>
+<div class="session_create">
+  <form class="create_form">
+    <div class="goal">
+      <label for="">goal: </label>
+      <input type="text" name="" value="{{object.goal}}" disabled />
+    </div>
+    <div class="language">
+      <label for="id_language">language: </label>
+      <input type="text" name="" value="{{object.language}}" disabled />
+    </div>
+    <div class="level">
+      <label for="id_level">level: </label>
+      <input type="text" name="" value="{{object.level}}" disabled />
+    </div>
+    <div class="desc">
+      <label for="id_desc">desc: </label>
+      <input type="text" name="" value="{{object.desc}}" disabled />
+    </div>
+    <div class="date">
+      <label for="id_date">date: </label>
+      <input type="text" name="" value="{{object.date}}" disabled />
+    </div>
+    <div class="time">
+      <label for="id_time">time: </label>
+      <input type="text" name="" value="{{object.time}}" disabled />
+    </div>
+    <div class="submit">
+      <input class="session_create_btn" type="submit" value="Book" />
+    </div>
+  </form>
+</div>
+
+{% endblock%}

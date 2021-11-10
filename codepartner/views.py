@@ -20,6 +20,7 @@ from .forms import SessionForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.db.models import Case, When
 # Create your views here.
 
 
@@ -164,7 +165,8 @@ class IndexView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
-        qs = Session.objects.all()
+        qs = Session.objects.order_by(
+            Case(When(id=self.request.user.id, then=0), default=1))
         return render(request, 'user/index.html', {'session': qs})
 
 
@@ -311,8 +313,11 @@ class EachUserProfile(LoginRequiredMixin, DetailView):
     model = NewUser
 
 
-class SessionCreateView(FormView):
+class SessionCreateView(LoginRequiredMixin, FormView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
     template_name = 'user/session_create.html'
+
     form_class = SessionForm
     success_url = 'index'
 
@@ -332,6 +337,12 @@ class SessionCreateView(FormView):
             settings.EMAIL_HOST_USER, [self.request.user]
         )
         return super().form_valid(form)
+
+
+class SessionDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+    model = Session
 
 
 class LogoutView(View):

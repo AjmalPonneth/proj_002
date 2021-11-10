@@ -136,7 +136,7 @@
 .home-section{
   position: relative;
   background: #eee;
-  height: auto;
+  height: 100vh;
   overflow: hidden;
   top: 0;
   left: 78px;
@@ -156,68 +156,67 @@
 }
 .column
 {
-    
-    width:25%;
-    float:left;
-    padding:55px 10px;
+  
+  width:25%;
+  float:left;
+  padding:55px 10px;
 }
 
 .row:after{
-    content:"";
-    display:table;
-    clear:both;
+  content:"";
+  display:table;
+  clear:both;
 }
 .card
 {
-    margin: 0px;
-    max-width:300px;
-    margin:auto;
-    background-color:white;
-    text-align:center;
-    padding-bottom:15px;
+  margin: 0px;
+  max-width:300px;
+  margin:auto;
+  background-color:white;
+  text-align:center;
+  padding-bottom:15px;
 }
 
 .session-type
 {
-    color:#000;
-    font-size:18px;
-    background: rgb(178, 177, 231);
-    padding: 5px;
-    margin: 20px;
+  color:#000;
+  font-size:18px;
+  background: rgb(178, 177, 231);
+  padding: 5px;
+  margin: 20px;
 }
 
 
 .view-session
 {
-    border:none;
-    padding:8px;
-    display: inline-block;
-    color:#000;
-    background: transparent;
-    border: 1px solid #706FD3;
-    cursor:pointer;
-    width:70%;
-    font-size:18px;
-    text-align:center;
+  border:none;
+  padding:8px;
+  display: inline-block;
+  color:#000;
+  background: transparent;
+  border: 1px solid #706FD3;
+  cursor:pointer;
+  width:70%;
+  font-size:18px;
+  text-align:center;
 }
-
 a{
-    text-decoration: none;
-    font-size:22px;
-    color:black;
+  text-decoration: none;
+  font-size:22px;
+  color:black;
 }
 
 a:hover,button:hover{
-    opacity: 0.6;
+  opacity: 0.6;
 }
 nav{
-    background: #fff;
-    height: 15%;
+  background: #fff;
+  height: 15%;
 }
 .user-info{
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
 }
 .user-info li{
     margin: 20px;
