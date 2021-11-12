@@ -1,16 +1,11 @@
-{%extends 'user/base.html'%} {%load static %} {% block content%}
-
-<div class="containers">
-  <div class="profile">
-    <header>
-      <h3 class="skeleton-text">My Profile</h3>
-      <br />
-    </header>
-    <div class="details">
-      <form action="" class="profile-form" id="profile-form">
-        {%csrf_token%}
-        <div class="firstname">
-          <label for="firstname">Firstname</label>
+{%extends 'user/base.html'%} {% block content%}
+<div class="main-container">
+  <div class="user-detail">
+    <header>User Profile</header>
+    <div class="user-profile-card">
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="firstname">Firstname:</label>
           <input
             type="text"
             name="firstname"
@@ -18,8 +13,8 @@
             value="{{request.user.first_name}}"
           />
         </div>
-        <div class="username">
-          <label for="username">Username</label>
+        <div class="form-group">
+          <label for="username">Username:</label>
           <input
             type="text"
             name="username"
@@ -28,8 +23,8 @@
             disabled
           />
         </div>
-        <div class="email">
-          <label for="email">Email</label>
+        <div class="form-group">
+          <label for="email">Email:</label>
           <input
             type="email"
             name="email"
@@ -38,8 +33,8 @@
             disabled
           />
         </div>
-        <div class="phone">
-          <label for="tel">Phone</label>
+        <div class="form-group">
+          <label for="tel">Phone:</label>
           <input
             type="tel"
             name="phone"
@@ -47,151 +42,123 @@
             value="{{request.user.phone_number}}"
           />
         </div>
-        <div class="about">
-          <header>
-            <h3 style="text-align: center">About Me</h3>
-            <br />
-          </header>
-          <div class="experience">
-            <label for="exp">Experience in years: </label>
-            <input
-              type="number"
-              min="0"
-              max="10"
-              name="exp"
-              id="exp"
-              value="{{request.user.user_exp}}"
-            />
-          </div>
-          <div class="skills">
-            <div id="values"></div>
-            <label for="skills">Skills: </label>
-            <select name="skills" id="skills" multiple="multiple"></select>
-          </div>
-          <div class="goal">
-            <label for="goal"
-              >What goals you want to achieve from CodePartner sessions:
-            </label>
-            <input
-              type="text"
-              name="goal"
-              id="goal"
-              value="{{request.user.goal}}"
-            />
-          </div>
-          <div class="best">
-            <label for="best">The best thing I love about coding: </label>
-            <input
-              type="text"
-              name="best"
-              id="best"
-              value="{{request.user.best_thing}}"
-            />
-          </div>
-          <div class="project">
-            <label for="project"
-              >TA recent project that I have been working on:
-            </label>
-            <input
-              type="text"
-              name="project"
-              id="project"
-              value="{{request.user.current_project}}"
-            />
-          </div>
-          <div class="fav">
-            <label for="fav">My favourite programming language: </label>
-            <input
-              type="text"
-              name="fav"
-              id="fav"
-              value="{{request.user.fav_language}}"
-            />
-          </div>
-          <div class="messages">
-            <p id="error"></p>
-          </div>
-          <div class="submit">
-            <input type="submit" value="Update" id="update-btn" />
-          </div>
+        <div class="form-group">
+          <label for="exp">Experience in years: </label>
+          <input
+            type="number"
+            min="0"
+            max="10"
+            name="exp"
+            id="exp"
+            value="{{request.user.user_exp}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills: </label>
+          <select name="skills" id="skills" multiple="multiple"></select>
+        </div>
+        <div class="form-group">
+          <label for="goal"
+            >What goals you want to achieve from CodePartner sessions:
+          </label>
+          <input
+            type="text"
+            name="goal"
+            id="goal"
+            value="{{request.user.goal}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="best">The best thing I love about coding: </label>
+          <input
+            type="text"
+            name="best"
+            id="best"
+            value="{{request.user.best_thing}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="project"
+            >TA recent project that I have been working on:
+          </label>
+          <input
+            type="text"
+            name="project"
+            id="project"
+            value="{{request.user.current_project}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fav">My favourite programming language: </label>
+          <input
+            type="text"
+            name="fav"
+            id="fav"
+            value="{{request.user.fav_language}}"
+          />
+        </div>
+        <div class="messages">
+          <p id="error"></p>
+        </div>
+        <div class="form-group">
+          <button type="button" id="update-btn">Update</button>
         </div>
       </form>
     </div>
   </div>
-  <div class="profile-image">
-    <img
-      src="{{request.user.image.url}}"
-      width="60%"
-      alt="profile"
-      id="user-image"
-    />
-
-    <h3>{{request.user.username}}</h3>
-    <br />
-    <form action="" method="POST" id="image-form" enctype="multipart/form-data">
-      {{form.image}}
-    </form>
+  <div class="user-profile">
+    <div class="user-profile-card">
+      <img src="{{request.user.image.url}}" alt="" id="user-image" />
+      <h3>{{request.user.username}}</h3>
+      <p>Total Sessions Count:</p>
+    </div>
   </div>
-
-  <script>
-    $(document).ready(function () {
-      var select = $("#skills").selectize({
-        plugins: ["remove_button"],
-        delimiter: ",",
-        persist: false,
-        maxItems: null,
-        valueField: "title",
-        labelField: "title",
-        searchField: "title",
-        options: [
-          { id: 1, title: "Python" },
-          { id: 2, title: "Javascript" },
-          { id: 3, title: "PHP" },
-          { id: 4, title: "Java" },
-          { id: 5, title: "C++" },
-          { id: 6, title: "C#" },
-          { id: 7, title: "Ruby" },
-          { id: 8, title: "Go" },
-          { id: 9, title: "R" },
-        ],
-        //initializing skill
-        onInitialize: function () {
-          $.get("user_skills", function (res) {
-            let selectize = select[0].selectize
-            let selected = []
-            $.each(res.skills, function (i, obj) {
-              selected.push(obj)
-            })
-            selectize.setValue(selected)
-          })
-        },
-        //adding skills
-        onChange: function (value) {
-          fetch("create_skills", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              skills: value,
-            }),
-          }).then((res) => res.json())
-        },
-      })
-      const form = $("#image-form")
-      $(document).on("submit", form, function (e) {
-        e.preventDefault()
-        $.ajax({
-          url: "user_image",
-          type: "POST",
-          dataType: "json",
-          data: $("#image-form").serialize(),
-          success: function (resp) {
-            console.log(resp)
-          },
-        })
-      })
-    })
-  </script>
 </div>
+<script>
+  $(document).ready(function () {
+    var select = $("#skills").selectize({
+      plugins: ["remove_button"],
+      delimiter: ",",
+      persist: false,
+      maxItems: null,
+      valueField: "title",
+      labelField: "title",
+      searchField: "title",
+      options: [
+        { id: 1, title: "Python" },
+        { id: 2, title: "Javascript" },
+        { id: 3, title: "PHP" },
+        { id: 4, title: "Java" },
+        { id: 5, title: "C++" },
+        { id: 6, title: "C#" },
+        { id: 7, title: "Ruby" },
+        { id: 8, title: "Go" },
+        { id: 9, title: "R" },
+      ],
+      //initializing skill
+      onInitialize: function () {
+        $.get("user_skills", function (res) {
+          let selectize = select[0].selectize
+          let selected = []
+          $.each(res.skills, function (i, obj) {
+            selected.push(obj)
+          })
+          selectize.setValue(selected)
+        })
+      },
+      //adding skills
+      onChange: function (value) {
+        fetch("create_skills", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            skills: value,
+          }),
+        }).then((res) => res.json())
+      },
+    })
+  })
+</script>
 {% endblock%}

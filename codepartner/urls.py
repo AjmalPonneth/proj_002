@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView
+from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView, BookSession
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('index', IndexView.as_view(), name='index'),
     path('logout', LogoutView.as_view(), name='logout'),
     path('profile/<pk>', EachUserProfile.as_view(
-        template_name='user/each_profile.html')),
+        template_name='user/each_profile.html'),name='each_profile'),
     path('reset_password', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html'),
          name='reset_password'),
     path('reset_password_sent', auth_views.PasswordResetDoneView.as_view(template_name='account/password_reset_sent.html'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('session_create', SessionCreateView.as_view(), name="session_create"),
     path('session_detail/<pk>', SessionDetailView.as_view(
         template_name='user/session_detail.html'), name="session_detail"),
+    path('book_session', csrf_exempt(BookSession.as_view()), name="book_session"),
 ]

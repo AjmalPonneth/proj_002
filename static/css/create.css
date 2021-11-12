@@ -31,7 +31,9 @@ textarea {
 .session_create_btn {
     background-color: #706FD3;
     color: #fff;
-    border-radius: 0;
+    border: none;
+    width: 100%;
+    height: 7vh;
 }
 
 .error {

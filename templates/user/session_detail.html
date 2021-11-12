@@ -1,37 +1,64 @@
 {% extends 'user/base.html'%} {%load static%} {% block content%}
 <head>
-  <link rel="stylesheet" href="{%static 'css/create.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/session_detail.css'%}">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<div class="session_create">
-  <form class="create_form">
-    <div class="goal">
-      <label for="">goal: </label>
-      <input type="text" name="" value="{{object.goal}}" disabled />
+
+<div class="main-container">
+
+  <div class="session-detail">
+    <header>
+      Session Detail
+    </header>
+    <div class="session-detail-card">
+      <form class="detail-form">
+        <div class="form-group">
+          <label for="goal">Goal: </label>
+          <input type="text" id="goal" value="{{object.goal}}" disabled>
+        </div>
+        <div class="form-group">
+          <label for="language">Language: </label>
+          <input type="text" id="language" value="{{object.language}}" disabled>
+        </div>
+        <div class="form-group">
+          <label for="level">
+            Level:
+          </label>
+          <input type="text" id="level" value="{{object.level}}" disabled>
+        </div>
+        <div class="form-group">
+          <label for="desc">
+            Description: 
+          </label>
+        <textarea name="" id="" cols="30" rows="10" disabled>{{object.desc}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="date">
+            Date:
+          </label>
+          <input type="text" id="date" value="{{object.date}}" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time">
+            Time:
+          </label>
+          <input type="text" id="time" value="{{object.time}}" disabled>
+        </div>
+        <div class="form-group">
+          <button type="button" class="book-btn">Book Session</button>
+        </div>
+      </form>
     </div>
-    <div class="language">
-      <label for="id_language">language: </label>
-      <input type="text" name="" value="{{object.language}}" disabled />
+  </div>
+  <div class="session-user-profile">
+    <div class="session-user-profile-card">
+      <img id="user-image" src="{{object.user.image.url}}"><br>
+      <h4>{{object.user.username}}</h4>
+
+      <p>No Of Sessions: </p>
+      <a href="{% url 'each_profile' object.user.id%}">View Profile</a>
     </div>
-    <div class="level">
-      <label for="id_level">level: </label>
-      <input type="text" name="" value="{{object.level}}" disabled />
-    </div>
-    <div class="desc">
-      <label for="id_desc">desc: </label>
-      <input type="text" name="" value="{{object.desc}}" disabled />
-    </div>
-    <div class="date">
-      <label for="id_date">date: </label>
-      <input type="text" name="" value="{{object.date}}" disabled />
-    </div>
-    <div class="time">
-      <label for="id_time">time: </label>
-      <input type="text" name="" value="{{object.time}}" disabled />
-    </div>
-    <div class="submit">
-      <input class="session_create_btn" type="submit" value="Book" />
-    </div>
-  </form>
+  </div>
 </div>
 
 {% endblock%}

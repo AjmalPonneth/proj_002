@@ -1,0 +1,76 @@
+.main-container {
+    display: flex;
+}
+
+.main-container .session-detail {
+    background: #fff;
+    margin: 40px;
+    width: 60%;
+    order: 1;
+}
+
+.main-container .session-detail header {
+    width: 100%;
+    background: #8685ac;
+    color: #fff;
+    padding: 15px;
+}
+
+.main-container .session-detail .session-detail-card {
+    padding: 40px;
+}
+
+.detail-form .form-group label {
+    display: block;
+}
+
+.detail-form .form-group {
+    padding-bottom: 20px;
+}
+
+.detail-form .form-group input, textarea {
+    width: 100%;
+    resize: none;
+    border-radius: 10px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+
+.detail-form .form-group textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+}
+
+.book-btn {
+    width: 100%;
+    border: none;
+    padding: 15px;
+    background: #706FD3;
+    color: #fff;
+}
+
+.main-container .session-user-profile {
+    margin: 40px;
+    order: 2;
+    width: 40%;
+}
+
+.main-container .session-user-profile .session-user-profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+    height: auto;
+    width: 100%;
+}
+
+#user-image {
+    height: 30vh;
+}
+
+.session-user-profile .session-user-profile-card a {
+    margin: 5px;
+    font-size: 15px;
+    font-weight: 400;
+}

@@ -345,6 +345,11 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
     model = Session
 
 
+class BookSession(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        return JsonResponse({'succcess': True})
+
+
 class LogoutView(View):
     url = 'login'
 
