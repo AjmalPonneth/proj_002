@@ -1,58 +1,56 @@
-{% extends 'user/base.html'%}
-{%load static%}
-{% block content%}
+{% extends 'user/base.html'%} {%load static%} {% block content%}
 <head>
-    <link rel="stylesheet" href="{%static 'css/create.css'%}">
+  <link rel="stylesheet" href="{%static 'css/create.css'%}" />
 </head>
-<div class="session_create">
-    <form class="create_form" method="POST">
-        {% csrf_token %}
-        <div class="goal">
-            <label for="">{{form.goal.label}}: </label>
-            {{form.goal}}
-            <div class="error">
-                {{form.goal.errors}}
-            </div>
-        </div>
-        <div class="language">
-            <label for="id_language">{{form.language.label}}: </label>
-            {{form.language}}
-            <div class="error">
-                {{form.language.errors}}
-            </div>
-        </div>
-        <div class="level">
-            <label for="id_level">{{form.level.label}}: </label>
-            {{form.level}}
-            <div class="error">
-                {{form.level.errors}}
-            </div>
-        </div>
-        <div class="desc">
-            <label for="id_desc">{{form.desc.label}}: </label>
-            {{form.desc}}
-            <div class="error">
-                {{form.desc.errors}}
-            </div>
-        </div>
-        <div class="date">
-            <label for="id_date">{{form.date.label}}: </label>
-            {{form.date}}
-            <div class="error">
-                {{form.date.errors}}
-            </div>
-        </div>
-        <div class="time">
-            <label for="id_time">{{form.time.label}}: </label>
-            {{form.time}}
-            <div class="error">
-                {{form.time.errors}}
-            </div>
-        </div>
-        <div class="submit">
-            <input class="session_create_btn" type="submit" value="Create">
-        </div>
-    </form>
-</div>
 
+<div class="main-container">
+  <div class="session-create">
+    <header>Create Session</header>
+    <div class="session-create-card">
+      <form id="create-form" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="">{{form.goal.label}}</label>
+          {{form.goal}}
+        </div>
+        <div class="form-group">
+          <label for="">{{form.language.label}}</label>
+          {{form.language}}
+        </div>
+        <div class="form-group">
+          <label for="">{{form.level.label}}</label>
+          {{form.level}}
+        </div>
+        <div class="form-group">
+          <label for="">{{form.desc.label}}</label>
+          {{form.desc}}
+        </div>
+        <div class="form-group">
+          <label for="">{{form.date.label}}</label>
+          {{form.date}}
+          <div id="date-picker"></div>
+        </div>
+        <div class="form-group">
+          <label for="">{{form.time.label}}</label>
+          {{form.time}}
+        </div>
+        <div class="form-group">
+          <button type="submit" id="create-btn">Create Session</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $(document).on("click", ".datepicker", function () {
+      var $input = $(".datepicker").pickadate({
+        format: "mm/dd/yyyy",
+      })
+    })
+    $(document).on("click", ".timepicker", function () {
+      $(".timepicker").pickatime()
+    })
+  })
+</script>
 {% endblock%}

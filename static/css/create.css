@@ -1,42 +1,37 @@
-.session_create {}
-
-.create_form {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.goal, .language, .level, .desc, .date, .time {
+.main-container .session-create{
+    margin: 40px;
+    background: #fff;
     width: 100%;
 }
-
-input {
+.main-container .session-create header{
     width: 100%;
-    margin: 10px 0 10px 0;
-}
-
-select {
-    border: none;
-    width: 20%;
-    margin: 10px 0 10px 0;
-}
-
-textarea {
-    border: none;
-    width: 50%;
-    height: 40vh;
-    resize: none;
-}
-
-.session_create_btn {
-    background-color: #706FD3;
+    background: #8685ac;
+    padding: 15px;
     color: #fff;
-    border: none;
-    width: 100%;
-    height: 7vh;
+    padding: 15px;
+}
+.main-container .session-create .session-create-card{
+    padding: 40px
+}
+#create-form .form-group{
+    padding-bottom: 20px;
+}
+#create-form label{
+    display: block;
 }
 
-.error {
-    color: red;
-    margin: 5px 0 0 10px;
+#create-form input,textarea,select{
+    width: 100%;
+    border: none;
+    padding: 15px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    outline: none;
+}
+#create-btn{
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    padding: 15px;
+    background: #706FD3;
+    color: #fff;
 }

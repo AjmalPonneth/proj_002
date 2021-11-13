@@ -1,15 +1,11 @@
-{%extends 'user/base.html'%} {%load static %} {% block content%}
-<div class="container">
-  <div class="profile">
-    <header>
-      <h3 class="skeleton-text">My Profile</h3>
-      <br />
-    </header>
-    <div class="details">
-      <form action="" class="profile-form" id="profile-form">
-        {%csrf_token%}
-        <div class="firstname">
-          <label for="firstname">Firstname</label>
+{%extends 'user/base.html'%} {% block content%}
+<div class="main-container">
+  <div class="user-detail">
+    <header>{{object.username|title}} Profile</header>
+    <div class="user-profile-card">
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="firstname">Firstname:</label>
           <input
             type="text"
             name="firstname"
@@ -18,8 +14,8 @@
             disabled
           />
         </div>
-        <div class="username">
-          <label for="username">Username</label>
+        <div class="form-group">
+          <label for="username">Username:</label>
           <input
             type="text"
             name="username"
@@ -28,8 +24,8 @@
             disabled
           />
         </div>
-        <div class="email">
-          <label for="email">Email</label>
+        <div class="form-group">
+          <label for="email">Email:</label>
           <input
             type="email"
             name="email"
@@ -38,8 +34,8 @@
             disabled
           />
         </div>
-        <div class="phone">
-          <label for="tel">Phone</label>
+        <div class="form-group">
+          <label for="tel">Phone:</label>
           <input
             type="tel"
             name="phone"
@@ -48,94 +44,47 @@
             disabled
           />
         </div>
-
-        <div class="about">
-          <header>
-            <h3 style="text-align: center">About Me</h3>
-            <br />
-          </header>
-          <div class="experience">
-            <label for="exp">Experience in years: </label>
-            <input
-              type="number"
-              min="0"
-              max="10"
-              name="exp"
-              id="exp"
-              value="{{object.user_exp}}"
-              disabled
-            />
-          </div>
-          <div class="skills">
-            <label for="skills">Skills: </label>
-            <select name="skills" id="skills" multiple="multiple" disabled>
-              <option value="python">Python</option>
-              <option value="javascript">JavaScript</option>
-              <option value="java">Java</option>
-              <option value="c">C</option>
-              <option value="c++">C++</option>
-              <option value="c#">C#</option>
-              <option value="android">Android</option>
-              <option value="ios">iOS</option>
-              <option value="firebase">Firebase</option>
-              <option value="sql">Sql</option>
-            </select>
-          </div>
-          <div class="goal">
-            <label for="goal"
-              >What goals you want to achieve from CodePartner sessions:
-            </label>
-            <input
-              type="text"
-              name="goal"
-              id="goal"
-              value="{{object.goal}}"
-              disabled
-            />
-          </div>
-          <div class="best">
-            <label for="best">The best thing I love about coding: </label>
-            <input
-              type="text"
-              name="best"
-              id="best"
-              value="{{object.best_thing}}"
-              disabled
-            />
-          </div>
-          <div class="project">
-            <label for="project"
-              >TA recent project that I have been working on:
-            </label>
-            <input
-              type="text"
-              name="project"
-              id="project"
-              value="{{object.current_project}}"
-              disabled
-            />
-          </div>
-          <div class="fav">
-            <label for="fav">My favourite programming language: </label>
-            <input
-              type="text"
-              name="fav"
-              id="fav"
-              value="{{object.fav_language}}"
-              disabled
-            />
-          </div>
+        <div class="form-group">
+          <label for="exp">Experience in years: </label>
+          <input
+            type="number"
+            min="0"
+            max="10"
+            name="exp"
+            id="exp"
+            value="{{object.user_exp}}"
+            disabled
+          />
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills: </label>
+          <select name="skills" id="skills" multiple="multiple"></select>
         </div>
       </form>
     </div>
   </div>
-  <div class="profile-image">
-    <div class="display-picture">
-      <img src="{{object.image.url}}" alt="profile" id="user-image" />
+  <div class="user-profile">
+    <div class="user-profile-card">
+      <img src="{{object.image.url}}" alt="" id="user-image" />
+      <h3>{{object.username}}</h3>
+      <p>Total Sessions:</p>
     </div>
-    <h3>{{object.username}}</h3>
-    <br />
   </div>
 </div>
-
+<script>
+  $(document).ready(function () {
+    var select = $("#skills").selectize({
+      onInitialize: function () {
+        $.get("user_skills", function (res) {
+          let selectize = select[0].selectize
+          let selected = []
+          $.each(res.skills, function (i, obj) {
+            selected.push(obj)
+          })
+          selectize.setValue(selected)
+        })
+      },
+    })
+  })
+</script>
 {% endblock%}

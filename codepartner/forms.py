@@ -4,10 +4,13 @@ from .models import Session
 
 class SessionForm(forms.ModelForm):
     date = forms.DateField(widget=forms.DateInput(attrs={
-        'type': 'date'
+        'type': 'date',
+        'class': 'datepicker',
     }))
     time = forms.TimeField(widget=forms.TimeInput(attrs={
-        'type': 'time'
+        'type': 'time',
+        'class': 'timepicker',
+
     }))
 
     class Meta:

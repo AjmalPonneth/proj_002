@@ -28,11 +28,13 @@
     padding-bottom: 20px;
 }
 
-.detail-form .form-group input, textarea {
+.detail-form .form-group input {
     width: 100%;
     resize: none;
     border-radius: 10px;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    border: none;
+    padding: 18px;
 }
 
 .detail-form .form-group textarea {
@@ -64,6 +66,7 @@
     height: auto;
     width: 100%;
 }
+
 
 #user-image {
     height: 30vh;

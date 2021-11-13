@@ -19,6 +19,10 @@
     />
     <link rel="stylesheet" href="{% static 'css/use_profile.css'%}" />
     <link rel="stylesheet" href="{% static 'css/selectize.css'%}" />
+    <!-- Pickerjs -->
+    <link rel="stylesheet" href="{% static 'lib/themes/default.css'%}" />
+    <link rel="stylesheet" href="{% static 'lib/themes/default.date.css'%}" />
+    <link rel="stylesheet" href="{% static 'lib/themes/default.time.css'%}" />
     <!-- Jquery -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -28,15 +32,6 @@
 
     <!--User Profile Js-->
     <script src="{% static 'js/user_profile.js'%}" defer></script>
-
-    <!-- Croppie -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css"
-      integrity="sha512-2eMmukTZtvwlfQoG8ztapwAH5fXaQBzaMqdljLopRSA0i6YKM8kBAOrSSykxu9NN9HrtD45lIqfONLII2AFL/Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
     <header>
@@ -94,6 +89,7 @@
     </div>
 
     <section class="home-section">{% block content%}{%endblock%}</section>
+
     <script>
       let sidebar = document.querySelector(".sidebar")
       let closeBtn = document.querySelector("#btn")
@@ -116,14 +112,11 @@
         $(".loader3").hide()
       })
     </script>
+    <script src="{% static 'lib/picker.js'%}"></script>
+    <script src="{% static 'lib/picker.date.js'%}"></script>
+    <script src="{% static 'lib/picker.time.js'%}"></script>
     <script src="{%static 'js/selectize.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"
-      integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
     <script src="{% static 'js/book.js'%}"></script>
   </body>
 </html>
