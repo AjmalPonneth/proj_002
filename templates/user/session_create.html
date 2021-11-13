@@ -46,6 +46,7 @@
     $(document).on("click", ".datepicker", function () {
       var $input = $(".datepicker").pickadate({
         format: "mm/dd/yyyy",
+        min: new Date(),
       })
     })
     $(document).on("click", ".timepicker", function () {
