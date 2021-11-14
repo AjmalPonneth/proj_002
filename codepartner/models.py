@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import NewUser
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 
@@ -46,6 +47,7 @@ class Session(models.Model):
         ('Intermediate', 'Intermediate'),
         ('Advanced', 'Advanced'),
     )
+
     user = models.ForeignKey(
         NewUser, on_delete=models.CASCADE, related_name="session_creator", blank=False)
     book = models.ForeignKey(
@@ -62,3 +64,41 @@ class Session(models.Model):
 
     def __str__(self):
         return "{} -- {}".format(self.language, self.level)
+
+    class Meta:
+        ordering = ['user']
+
+
+class Discussion(models.Model):
+    category_choices = (
+        ('Beginner', 'Beginner'),
+        ('Intermediate', 'Intermediate'),
+        ('Advanced', 'Advanced'),
+    )
+    sub_category_choices = (
+        ('Python', 'Python'),
+        ('Javascript', 'Javascript'),
+        ('C', 'C'),
+        ('C#', 'C#'),
+        ('C++', 'C++'),
+        ('Java', 'Java'),
+        ('PHP', 'PHP'),
+        ('GO', 'GO'),
+        ('R', 'R'),
+        ('Ruby', 'Ruby'),
+    )
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    title = models.CharField(blank=False, max_length=250)
+    category = models.CharField(
+        blank=False, max_length=100, choices=category_choices)
+    sub_category = models.CharField(
+        max_length=100, choices=sub_category_choices)
+    content = RichTextField()
+    thumpsup = models.IntegerField(default='0')
+    thumpsdown = models.IntegerField(default='0')
+    thumbs = models.ManyToManyField(
+        NewUser, related_name='thumbs', default=None, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title} by {self.user}"

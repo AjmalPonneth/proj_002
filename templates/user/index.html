@@ -1,4 +1,7 @@
 {% extends 'user/base.html'%} {% load static%} {% block content%}
+<head>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
 <div class="sessions">
   {% for i in session%}
   <div class="column">
@@ -15,7 +18,7 @@
       <p>{{i.date}}, {{i.time}}</p>
       <br />
       {% if i.user == request.user%}
-      <p><button class="view-session">Delete Session</button></p>
+      <p><button class="view-session delete-session">Delete Session</button></p>
       {%else%}
       <p>
         <a href="{% url 'session_detail' i.id%}" class="view-session"
@@ -27,4 +30,23 @@
   </div>
   {%endfor%}
 </div>
+<script>
+  $(document).ready(function () {
+    $(document).on("click", ".delete-session", function () {
+      swal({
+        title: "Are you sure?",
+        text: "Do You Want To Delete This Session?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: false,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          })
+        }
+      })
+    })
+  })
+</script>
 {% endblock%}

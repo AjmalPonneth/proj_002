@@ -13,6 +13,7 @@ from django.contrib.auth.hashers import make_password
 from decouple import config
 from django.conf import settings
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from .models import *
 from accounts.forms import ProfileImageForm
 from django.views.generic.edit import FormView
@@ -20,7 +21,6 @@ from .forms import SessionForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.db.models import Case, When
 # Create your views here.
 
 
@@ -137,7 +137,6 @@ class OTPVerificationView(View):
 
 class OTPVerfied(OTPVerificationView):
     def get(self, request, *args, **kwargs):
-
         return render(request, 'user/otp_verify.html')
 
     def post(self, request, *args, **kwargs):
@@ -165,8 +164,7 @@ class IndexView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
-        qs = Session.objects.order_by(
-            Case(When(id=self.request.user.id, then=0), default=1))
+        qs = Session.objects.order_by('-user')
         return render(request, 'user/index.html', {'session': qs})
 
 
@@ -175,7 +173,9 @@ class ProfileView(LoginRequiredMixin, View):
     redirect_field_name = 'redirect_to'
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'user/user_profile.html')
+        session_count = Session.objects.filter(user=self.request.user).count()
+        count = NewUser.objects.filter(id=self.request.user.id).count()
+        return render(request, 'user/user_profile.html', {'user_session_count': session_count})
 
     def post(self, request, *args, **kwargs):
         data = json.loads(self.request.body)
@@ -312,6 +312,13 @@ class EachUserProfile(LoginRequiredMixin, DetailView):
     redirect_field_name = 'redirect_to'
     model = NewUser
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(EachUserProfile,
+                        self).get_context_data(*args, **kwargs)
+        context["session_count"] = Session.objects.filter(
+            user=self.kwargs['pk']).count()
+        return context
+
 
 class SessionCreateView(LoginRequiredMixin, FormView):
     login_url = 'login'
@@ -344,10 +351,22 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
     redirect_field_name = 'redirect_to'
     model = Session
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(SessionDetailView,
+                        self).get_context_data(*args, **kwargs)
+        context["session_count"] = Session.objects.filter(
+            user=self.kwargs['pk']).count()
+        return context
+
 
 class BookSession(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         return JsonResponse({'succcess': True})
+
+
+class DiscussionListView(LoginRequiredMixin, ListView):
+    model = Discussion
+    template_name = 'user/discussion.html'
 
 
 class LogoutView(View):

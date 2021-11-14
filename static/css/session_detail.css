@@ -5,7 +5,7 @@
 .main-container .session-detail {
     background: #fff;
     margin: 40px;
-    width: 60%;
+    width: 70%;
     order: 1;
 }
 
@@ -54,7 +54,7 @@
 .main-container .session-user-profile {
     margin: 40px;
     order: 2;
-    width: 40%;
+    width: 30%;
 }
 
 .main-container .session-user-profile .session-user-profile-card {
@@ -76,4 +76,8 @@
     margin: 5px;
     font-size: 15px;
     font-weight: 400;
+    color: #3a34ec;
+}
+.session-user-profile .session-user-profile-card p{
+    margin: 15px;
 }

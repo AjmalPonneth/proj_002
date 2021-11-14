@@ -1,0 +1,42 @@
+.main-container .discussion{
+    margin: 40px;
+    width: 100%;
+}
+.main-container .discussion .discussion-card{
+    background: #fff;
+    padding: 15px;
+    height: auto;
+}
+.user-information{
+    display: flex;
+    padding-bottom: 20px;
+}
+.main-container .discussion .discussion-card .user-information  .user-image{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.main-container .discussion .discussion-card .user-information .user-name{
+    margin: 5px;
+    margin-left: 10px;
+    padding-top: 5px;
+}
+.main-container .discussion .discussion-card .content-section .card-title{
+    font-size: larger;
+    text-transform: capitalize;
+    color: #0056B3;
+}
+.main-container .discussion .discussion-card .content-section .card-content{
+    margin-bottom: 5px;
+    color: #858585;
+    font-size: 15px;
+    font-weight:200;
+}
+.main-container .discussion .discussion-card footer{
+    padding-bottom: 10px;
+    margin: 10px;
+}
+.main-container .discussion .discussion-card footer .vote{
+    margin-top: 10px;
+}

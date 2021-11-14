@@ -35,16 +35,6 @@
           />
         </div>
         <div class="form-group">
-          <label for="tel">Phone:</label>
-          <input
-            type="tel"
-            name="phone"
-            id="phone"
-            value="{{object.phone_number}}"
-            disabled
-          />
-        </div>
-        <div class="form-group">
           <label for="exp">Experience in years: </label>
           <input
             type="number"
@@ -67,24 +57,13 @@
     <div class="user-profile-card">
       <img src="{{object.image.url}}" alt="" id="user-image" />
       <h3>{{object.username}}</h3>
-      <p>Total Sessions:</p>
+      <p>No Of Sessions: {{session_count}}</p>
     </div>
   </div>
 </div>
 <script>
   $(document).ready(function () {
-    var select = $("#skills").selectize({
-      onInitialize: function () {
-        $.get("user_skills", function (res) {
-          let selectize = select[0].selectize
-          let selected = []
-          $.each(res.skills, function (i, obj) {
-            selected.push(obj)
-          })
-          selectize.setValue(selected)
-        })
-      },
-    })
+    var select = $("#skills").selectize()
   })
 </script>
 {% endblock%}

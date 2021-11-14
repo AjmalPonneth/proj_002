@@ -1,0 +1,31 @@
+{% extends 'user/base.html'%} {% load static%} {% block content%}
+
+<head>
+  <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+  <link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
+</head>
+<div class="main-container">
+  <div class="discussion">
+    {% for i in object_list%}
+    <div class="discussion-card">
+      <div class="user-information">
+        <img src="{{i.user.image.url}}" class="user-image" alt="" />
+        <h3 class="user-name">{{i.user.username}}</h3>
+      </div>
+      <div class="content-section">
+        <h5 class="card-title">{{i.title}}</h5>
+        <p class="card-content">{{i.content|safe}}</p>
+      </div>
+      <hr />
+      <footer>
+        <div class="vote">
+          <box-icon name="like"></box-icon>{{i.thumpsup}} &nbsp;
+          <box-icon name="dislike"></box-icon>{{i.thumpsdown}}
+          <box-icon name="comment-detail"></box-icon>
+        </div>
+      </footer>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{% endblock%}
