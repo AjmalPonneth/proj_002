@@ -381,7 +381,7 @@ class VoteDiscussion(View):
         button = self.request.POST.get('button')
         update = Discussion.objects.get(id=postid)
         if self.request.POST.get('action') == 'thumbs':
-            if update.thumbs.filter(email=self.request.user).exists():
+            if update.thumbs.filter(id=self.request.user.id).exists():
                 # Get the users current vote (True/False)
                 q = Vote.objects.get(
                     Q(discussion=Discussion.objects.get(
@@ -433,7 +433,7 @@ class VoteDiscussion(View):
                         down = update.thumpsdown
 
                         return JsonResponse({'up': up, 'down': down})
-                    if button == 'thumpsdown':
+                    if button == 'thumbsdown':
 
                         update.thumpsdown = F('thumpsdown') - 1
                         update.thumbs.remove(self.request.user)
