@@ -3,6 +3,12 @@
 <head>
   <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
   <link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
 </head>
 <div class="main-container">
   <div class="discussion">
@@ -13,19 +19,24 @@
         <h3 class="user-name">{{i.user.username}}</h3>
       </div>
       <div class="content-section">
-        <h5 class="card-title">{{i.title}}</h5>
+        <h5>
+          <a href="{% url 'discussion_detail' i.id%}" class="card-title"
+            >{{i.title}}</a
+          >
+        </h5>
         <p class="card-content">{{i.content|safe}}</p>
       </div>
       <hr />
       <footer>
         <div class="vote">
           <box-icon name="like"></box-icon>{{i.thumpsup}} &nbsp;
-          <box-icon name="dislike"></box-icon>{{i.thumpsdown}}
-          <box-icon name="comment-detail"></box-icon>
+          <box-icon name="dislike"></box-icon>{{i.thumpsdown}}&nbsp;
+          <box-icon name="comment-detail"></box-icon>0
         </div>
       </footer>
     </div>
     {%endfor%}
   </div>
 </div>
+
 {% endblock%}

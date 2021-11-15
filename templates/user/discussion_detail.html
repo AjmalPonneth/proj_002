@@ -1,0 +1,63 @@
+{% extends 'user/base.html'%} {% load static%} {% block content%}
+
+<head>
+  <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+  <link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
+</head>
+<div class="main-container">
+  <div class="discussion">
+    <div class="discussion-card">
+      <div class="user-information">
+        <img src="{{object.user.image.url}}" class="user-image" alt="" />
+        <h3 class="user-name">{{object.user.username}}</h3>
+      </div>
+      <div class="content-section">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p class="card-content">{{object.content|safe}}</p>
+      </div>
+      <hr />
+      <footer>
+        <div class="vote">
+          <span id="thumbs" data-value="{{object.id}}"></span>
+          <a href="" class="thumbaction" value="thumbsup" role="button">
+            <box-icon class="thumbsup" name="like"></box-icon
+            ><span id="up">{{object.thumpsup}}</span> </a
+          >&nbsp;
+          <a href="" class="thumbaction" value="thumbsdown" role="button">
+            <box-icon class="thumbsdown" name="dislike"></box-icon
+            ><span id="down">{{object.thumpsdown}}</span>&nbsp;
+          </a>
+          <a href="" value="comment" role="button">
+            <box-icon name="comment-detail"></box-icon
+            ><span id="comment">0</span>
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $(".thumbaction").click(function (e) {
+      var postid = document.getElementById("thumbs").getAttribute("data-value")
+      var button = $(this).attr("value")
+      e.preventDefault()
+      $.ajax({
+        type: "POST",
+        url: "{% url 'vote'%}",
+        data: {
+          csrfmiddlewaretoken: "{{csrf_token}}",
+          postid: postid,
+          action: "thumbs",
+          button: button,
+        },
+        success: function (resp) {
+          document.getElementById("up").innerHTML = resp.up
+          document.getElementById("down").innerHTML = resp.down
+        },
+        error: function (xhr, errmsg, err) {},
+      })
+    })
+  })
+</script>
+{% endblock%}

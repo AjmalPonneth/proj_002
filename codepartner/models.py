@@ -98,7 +98,15 @@ class Discussion(models.Model):
     thumpsdown = models.IntegerField(default='0')
     thumbs = models.ManyToManyField(
         NewUser, related_name='thumbs', default=None, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.TimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} by {self.user}"
+
+
+class Vote(models.Model):
+    discussion = models.ForeignKey(
+        Discussion, on_delete=models.CASCADE, related_name='disid', default=None, blank=True)
+    user = models.ForeignKey(
+        NewUser, on_delete=models.CASCADE, related_name='userid', default=None, blank=True)
+    vote = models.BooleanField(default=True)

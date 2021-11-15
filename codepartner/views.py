@@ -20,7 +20,7 @@ from django.views.generic.edit import FormView
 from .forms import SessionForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.conf import settings
+from django.db.models import F, Q
 # Create your views here.
 
 
@@ -367,6 +367,106 @@ class BookSession(LoginRequiredMixin, View):
 class DiscussionListView(LoginRequiredMixin, ListView):
     model = Discussion
     template_name = 'user/discussion.html'
+
+
+class DiscussionDetailView(LoginRequiredMixin, DetailView):
+    model = Discussion
+    template_name = 'user/discussion_detail.html'
+
+
+class VoteDiscussion(View):
+
+    def post(self, request, *args, **kwargs):
+        postid = int(self.request.POST.get('postid'))
+        button = self.request.POST.get('button')
+        update = Discussion.objects.get(id=postid)
+        if self.request.POST.get('action') == 'thumbs':
+            if update.thumbs.filter(email=self.request.user).exists():
+                # Get the users current vote (True/False)
+                q = Vote.objects.get(
+                    Q(discussion=Discussion.objects.get(
+                        id=postid)) & Q(user=self.request.user))
+                evote = q.vote
+                if evote == True:
+                    # Now we need action based upon what button pressed
+                    if button == 'thumbsup':
+                        update.thumpsup = F('thumpsup') - 1
+                        update.thumbs.remove(self.request.user)
+                        update.save()
+                        update.refresh_from_db()
+                        up = update.thumpsup
+                        down = update.thumpsdown
+                        q.delete()
+                        return JsonResponse({'up': up, 'down': down, 'remove': 'none'})
+                    if button == 'thumbsdown':
+                        # Change vote in Post
+                        update.thumpsup = F('thumpsup') - 1
+                        update.thumpsdown = F('thumpsdown') + 1
+                        update.save()
+
+                        # Update Vote
+
+                        q.vote = False
+                        q.save(update_fields=['vote'])
+
+                        # Return updated votes
+                        update.refresh_from_db()
+                        up = update.thumpsup
+                        down = update.thumpsdown
+                        return JsonResponse({'up': up, 'down': down})
+                pass
+                if evote == False:
+                    if button == 'thumbsup':
+                        # Change vote in Post
+                        update.thumpsup = F('thumpsup') + 1
+                        update.thumpsdown = F('thumpsdown') - 1
+                        update.save()
+
+                        # Update Vote
+
+                        q.vote = True
+                        q.save(update_fields=['vote'])
+
+                        # Return updated votes
+                        update.refresh_from_db()
+                        up = update.thumpsup
+                        down = update.thumpsdown
+
+                        return JsonResponse({'up': up, 'down': down})
+                    if button == 'thumpsdown':
+
+                        update.thumpsdown = F('thumpsdown') - 1
+                        update.thumbs.remove(self.request.user)
+                        update.save()
+                        update.refresh_from_db()
+                        up = update.thumpsup
+                        down = update.thumpsdown
+                        q.delete()
+                        return JsonResponse({'up': up, 'down': down, 'remove': 'none'})
+            else:
+                if button == 'thumbsup':
+                    update.thumpsup = F('thumpsup') + 1
+                    update.thumbs.add(self.request.user)
+                    update.save()
+                    # Add new vote
+                    new = Vote(discussion=Discussion.objects.get(
+                        id=postid), user=self.request.user, vote=True)
+                    new.save()
+                else:
+                    # Add vote down
+                    update.thumpsdown = F('thumpsdown') + 1
+                    update.thumbs.add(self.request.user)
+                    update.save()
+                    # Add new vote
+                    new = Vote(discussion=Discussion.objects.get(
+                        id=postid), user=self.request.user, vote=False)
+                    new.save()
+                # Return updated votes
+                update.refresh_from_db()
+                up = update.thumpsup
+                down = update.thumpsdown
+                return JsonResponse({'up': up, 'down': down})
+        pass
 
 
 class LogoutView(View):

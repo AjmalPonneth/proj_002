@@ -2,10 +2,12 @@
     margin: 40px;
     width: 100%;
 }
+
 .main-container .discussion .discussion-card{
     background: #fff;
     padding: 15px;
     height: auto;
+    margin: 10px;
 }
 .user-information{
     display: flex;
@@ -26,6 +28,9 @@
     font-size: larger;
     text-transform: capitalize;
     color: #0056B3;
+}
+.main-container .discussion .discussion-card .content-section .card-title:hover{
+    text-decoration: underline;
 }
 .main-container .discussion .discussion-card .content-section .card-content{
     margin-bottom: 5px;
