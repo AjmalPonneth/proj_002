@@ -17,10 +17,11 @@ from django.views.generic.list import ListView
 from .models import *
 from accounts.forms import ProfileImageForm
 from django.views.generic.edit import FormView
-from .forms import SessionForm
+from .forms import *
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.db.models import F, Q
+from django.urls import reverse
 # Create your views here.
 
 
@@ -369,9 +370,25 @@ class DiscussionListView(LoginRequiredMixin, ListView):
     template_name = 'user/discussion.html'
 
 
-class DiscussionDetailView(LoginRequiredMixin, DetailView):
+class DiscussionDetailView(LoginRequiredMixin, DetailView, FormView):
     model = Discussion
     template_name = 'user/discussion_detail.html'
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse_lazy('discussion_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        Comment.objects.create(
+            discusssion=Discussion.objects.get(id=self.kwargs['pk']), user=self.request.user, content=form.cleaned_data.get('content'))
+        return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(DiscussionDetailView,
+                        self).get_context_data(*args, **kwargs)
+        context['comments'] = Comment.objects.filter(
+            discusssion=Discussion.objects.filter(id=self.kwargs['pk']).first())
+        return context
 
 
 class VoteDiscussion(View):

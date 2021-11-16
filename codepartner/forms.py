@@ -1,5 +1,5 @@
 from django import forms
-from .models import Session
+from .models import Session, Comment
 
 
 class SessionForm(forms.ModelForm):
@@ -16,3 +16,9 @@ class SessionForm(forms.ModelForm):
     class Meta:
         model = Session
         fields = ('goal', 'language', 'level', 'desc', 'date', 'time')
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)

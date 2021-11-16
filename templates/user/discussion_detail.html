@@ -21,11 +21,11 @@
           <span id="thumbs" data-value="{{object.id}}"></span>
           <a href="" class="thumbaction" value="thumbsup" role="button">
             <box-icon class="thumbsup" name="like"></box-icon
-            ><span id="up">{{object.thumpsup}}</span> </a
+            ><span class="up" id="up">{{object.thumpsup}}</span> </a
           >&nbsp;
           <a href="" class="thumbaction" value="thumbsdown" role="button">
             <box-icon class="thumbsdown" name="dislike"></box-icon
-            ><span id="down">{{object.thumpsdown}}</span>&nbsp;
+            ><span class="down" id="down">{{object.thumpsdown}}</span>&nbsp;
           </a>
           <a href="" value="comment" role="button">
             <box-icon name="comment-detail"></box-icon
@@ -33,6 +33,27 @@
           </a>
         </div>
       </footer>
+    </div>
+    <div class="comment-form">
+      <label for="" style="margin: 10px">Write Down Your Comments: </label>
+      <div class="comment-form-card">
+        <form class="comment" method="POST">
+          {%csrf_token%} {{form.content}}{{form.media}}
+          <br />
+          <button class="comment-btn" type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+    <div class="comment">
+      {% for i in comments%}
+      <div class="discussion-card">
+        <div class="user-information">
+          <img src="{{object.user.image.url}}" class="user-image" alt="" />
+          <h3 class="user-name">{{object.user.username}}</h3>
+        </div>
+        {{i.content|safe}}
+      </div>
+      {%endfor%}
     </div>
   </div>
 </div>
@@ -54,6 +75,12 @@
         success: function (resp) {
           document.getElementById("up").innerHTML = resp.up
           document.getElementById("down").innerHTML = resp.down
+          $("box-icon").removeClass("thumb-active")
+          if (resp.remove == "none") {
+            $("." + button).removeClass("thumb-active")
+          } else {
+            $("." + button).addClass("thumb-active")
+          }
         },
         error: function (xhr, errmsg, err) {},
       })

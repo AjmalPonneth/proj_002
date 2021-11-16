@@ -110,3 +110,14 @@ class Vote(models.Model):
     user = models.ForeignKey(
         NewUser, on_delete=models.CASCADE, related_name='userid', default=None, blank=True)
     vote = models.BooleanField(default=True)
+
+
+class Comment(models.Model):
+    discusssion = models.ForeignKey(
+        Discussion, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(NewUser(), on_delete=models.CASCADE)
+    content = RichTextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.content} by {self.content}"

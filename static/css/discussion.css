@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-.main-container .discussion .discussion-card{
+.discussion-card{
     background: #fff;
     padding: 15px;
     height: auto;
@@ -11,7 +11,7 @@
 }
 .user-information{
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 20px; 
 }
 .main-container .discussion .discussion-card .user-information  .user-image{
     height: 48px;
@@ -44,4 +44,28 @@
 }
 .main-container .discussion .discussion-card footer .vote{
     margin-top: 10px;
+}
+.thumb-active{
+    fill: blue;
+}
+.main-container .discussion .comment-form .comment-form-card{
+    background: #fff;
+    padding: 15px;
+    height: auto;
+    margin: 10px;
+}
+.comment-btn{
+    height: auto;
+    margin: 10px;
+    border: none;
+    background:#706FD3;
+    letter-spacing: 2px;
+    padding: 5px;
+    color: #fff;
+    width: 15%;
+}
+.main-container .discussion .discussion-card .comment .user-information{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;  
 }
