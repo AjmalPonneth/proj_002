@@ -32,6 +32,9 @@
 
     <!--User Profile Js-->
     <script src="{% static 'js/user_profile.js'%}" defer></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
   </head>
   <body>
     <header>
@@ -40,7 +43,7 @@
           <li>
             <a href="{% url 'user_profile'%}">{{request.user.username}}</a>
           </li>
-          <li><a href="{% url 'logout'%}">Logout</a></li>
+          <li><a href="" id="logout">Logout</a></li>
         </ul>
       </nav>
     </header>
@@ -118,5 +121,29 @@
     <script src="{%static 'js/selectize.js'%}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{% static 'js/book.js'%}"></script>
+    <script>
+      $(document).ready(function(){
+        $(document).on('click','#logout',function(e){
+          e.preventDefault()
+          swal({
+            title: "Are you sure?",
+            text: "Do You Want To Logout?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            $.ajax({
+              type:"POST",
+              url:"{% url 'logout'%}",
+              action:"logout",
+              success:function(){
+                location.replace('login')
+              }
+            })
+          });
+        })
+      })
+    </script>
   </body>
 </html>

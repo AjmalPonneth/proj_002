@@ -48,7 +48,8 @@
         </div>
         <div class="form-group">
           <label for="skills">Skills: </label>
-          <select name="skills" id="skills" multiple="multiple"></select>
+          <select name="skills" id="skills" multiple="multiple" 
+          ></select>
         </div>
       </form>
     </div>
@@ -63,7 +64,38 @@
 </div>
 <script>
   $(document).ready(function () {
-    var select = $("#skills").selectize()
+    var select = $("#skills").selectize({
+      delimiter: ",",
+      persist: false,
+      maxItems: null,
+      valueField: "title",
+      labelField: "title",
+      searchField: "title",
+      options: [
+        { id: 1, title: "Python" },
+        { id: 2, title: "Javascript" },
+        { id: 3, title: "PHP" },
+        { id: 4, title: "Java" },
+        { id: 5, title: "C++" },
+        { id: 6, title: "C#" },
+        { id: 7, title: "Ruby" },
+        { id: 8, title: "Go" },
+        { id: 9, title: "R" },
+      ],
+      create:false,
+      //Initializing skill
+      onInitialize:function(){
+        $.get("{% url 'skills_view'%}", function (res) {
+          var selectize = select[0].selectize
+          var selected = []
+          $.each(res.skills, function (i, obj) {
+            selected.push(obj)
+          })
+          selectize.setValue(selected)
+          selectize.disable()
+        })
+      }
+    })
   })
 </script>
 {% endblock%}

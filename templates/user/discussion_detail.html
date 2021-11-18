@@ -2,6 +2,12 @@
 
 <head>
   <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
 </head>
 <div class="main-container">
@@ -29,7 +35,7 @@
           </a>
           <a href="" value="comment" role="button">
             <box-icon name="comment-detail"></box-icon
-            ><span id="comment">0</span>
+            ><span id="comment">{{comments_count}}</span>
           </a>
         </div>
       </footer>
@@ -44,20 +50,36 @@
         </form>
       </div>
     </div>
-    <div class="comment">
+    <div class="comments">
       {% for i in comments%}
-      <div class="discussion-card">
+      <div class="discussion-card" data-index="{{i.id}}">
         <div class="user-information">
-          <img src="{{object.user.image.url}}" class="user-image" alt="" />
-          <h3 class="user-name">{{object.user.username}}</h3>
+          <img src="{{i.user.image.url}}" class="user-image" alt="" />
+          <h3 class="user-name">{{i.user.username}}</h3>
         </div>
         {{i.content|safe}}
+        <hr />
+        <footer>
+          <div class="vote">
+            {% if i.user == request.user%}
+            <div class="delete">
+              <a href=""
+                ><i
+                  class="far fa-trash-alt delete-btn"
+                  data-index="{{i.id}}"
+                ></i
+              ></a>
+            </div>
+            {%endif%}
+          </div>
+        </footer>
       </div>
       {%endfor%}
     </div>
   </div>
 </div>
 <script>
+  //Post Like
   $(document).ready(function () {
     $(".thumbaction").click(function (e) {
       var postid = document.getElementById("thumbs").getAttribute("data-value")
@@ -75,14 +97,34 @@
         success: function (resp) {
           document.getElementById("up").innerHTML = resp.up
           document.getElementById("down").innerHTML = resp.down
-          $("box-icon").removeClass("thumb-active")
-          if (resp.remove == "none") {
-            $("." + button).removeClass("thumb-active")
+          $("box-icon").removeClass("thumb-active");
+          if (resp['remove'] == 'none') {
+            $("." + button).removeClass("thumb-active");
           } else {
-            $("." + button).addClass("thumb-active")
+            $("." + button).addClass("thumb-active");
           }
         },
         error: function (xhr, errmsg, err) {},
+      })
+    })
+
+
+    //Delete comment
+    $(".delete-btn").click(function (e) {
+      e.preventDefault()
+      let comment_id = $(this).attr("data-index")
+      let post_id = document.getElementById("thumbs").getAttribute("data-value")
+      $.ajax({
+        type: "POST",
+        url: "{% url 'delete_comment'%}",
+        data: {
+          csrfmiddlewaretoken: "{{csrf_token}}",
+          comment_id: comment_id,
+          post_id: post_id,
+        },
+        success: function (resp) {
+          $('.discussion-card[data-index="' + comment_id + '"]').remove()
+        },
       })
     })
   })

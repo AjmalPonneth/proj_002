@@ -10,7 +10,7 @@
         src="{{i.user.image.url}}"
         style="width: 150px; height: auto; padding-top: 10px"
       />
-      <h1>{{i.user.username}}</h1>
+      <h3><a href="{% url 'each_profile' i.user.id%}">{{i.user.username}}</a></h3>
 
       <p class="session-type">{{i.goal}}</p>
 
@@ -40,11 +40,7 @@
         buttons: true,
         dangerMode: false,
       }).then((willDelete) => {
-        if (willDelete) {
-          swal("Poof! Your imaginary file has been deleted!", {
-            icon: "success",
-          })
-        }
+
       })
     })
   })

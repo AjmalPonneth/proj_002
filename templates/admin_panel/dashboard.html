@@ -10,28 +10,48 @@
 <div class="row counts">
   <div class="col">
     <h4>Total Users</h4>
-    <p>24</p>
+    <p>{{total_users}}</p>
   </div>
   <div class="col">
     <h4>Active Users</h4>
-    <p>20</p>
+    <p>{{active}}</p>
   </div>
   <div class="col">
     <h4>Blocked Users</h4>
-    <p>4</p>
+    <p>{{blocked}}</p>
   </div>
   <div class="col">
     <h4>Total Sessions</h4>
-    <p>100</p>
+    <p>{{sessions}}</p>
   </div>
 </div>
-<div style="width: 50%; height: 30%; margin: 30px">
-  <h3>Users</h3>
-  <canvas id="myChart" width="100" height="50"></canvas>
+<div class="charts">
+  <div style="width: 50%; height: 30%; margin: 30px">
+    <h3>Users</h3>
+    <canvas id="myChart" width="100" height="50"></canvas>
+  </div>
+  <div style="width: 50%; height: 30%; margin: 30px">
+    <h3>Sessions</h3>
+    <canvas id="sessionChart" width="100" height="50"></canvas>
+  </div>
 </div>
 <input type="hidden" value="{{windows}}" id="windows" />
 <input type="hidden" value="{{mac}}" id="mac" />
 <input type="hidden" value="{{iphone}}" id="iphone" />
 <input type="hidden" value="{{android}}" id="android" />
 <input type="hidden" value="{{others}}" id="others" />
+
+
+<!-- Sessions -->
+<input type="hidden" id='python' value="{{python}}">
+<input type="hidden" id="js" value="{{js}}">
+<input type="hidden" id="c" value="{{c}}">
+<input type="hidden" id="java" value="{{java}}">
+<input type="hidden" id="csharp" value="{{csharp}}">
+<input type="hidden" id="cpp" value="{{cpp}}">
+<input type="hidden" id="php" value="{{php}}">
+<input type="hidden" id="r" value="{{r}}">
+<input type="hidden" id="ruby" value="{{ruby}}">
+<input type="hidden" id="go" value="{{go}}">
+<input type="hidden" id="other" value="{{other}}">
 {% endblock%}

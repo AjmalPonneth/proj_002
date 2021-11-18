@@ -21,7 +21,7 @@ from .forms import *
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.db.models import F, Q
-from django.urls import reverse
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -370,13 +370,23 @@ class DiscussionListView(LoginRequiredMixin, ListView):
     template_name = 'user/discussion.html'
 
 
+class CommentDelete(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        postid = self.request.POST.get('post_id')
+        commentid = self.request.POST.get('comment_id')
+        post = Discussion.objects.get(id=postid)
+        comment = Comment.objects.filter(id=commentid, discusssion=post)
+        comment.delete()
+        return JsonResponse({'success': True})
+
+
 class DiscussionDetailView(LoginRequiredMixin, DetailView, FormView):
     model = Discussion
     template_name = 'user/discussion_detail.html'
     form_class = CommentForm
 
     def get_success_url(self):
-        return reverse_lazy('discussion_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('discussion_detail', kwargs={'pk': self.kwargs['pk']})
 
     def form_valid(self, form):
         Comment.objects.create(
@@ -388,6 +398,8 @@ class DiscussionDetailView(LoginRequiredMixin, DetailView, FormView):
                         self).get_context_data(*args, **kwargs)
         context['comments'] = Comment.objects.filter(
             discusssion=Discussion.objects.filter(id=self.kwargs['pk']).first())
+        context['comments_count'] = Comment.objects.filter(
+            discusssion=Discussion.objects.get(id=self.kwargs['pk'])).count()
         return context
 
 
@@ -490,9 +502,8 @@ class LogoutView(View):
     url = 'login'
 
     def get(self, request, *args, **kwargs):
-        auth.logout(request)
-        return redirect(self.url)
+        return redirect('index')
 
     def post(self, request, *args, **kwargs):
-        auth.logout(request)
+        auth.logout(self.request)
         return redirect(self.url)

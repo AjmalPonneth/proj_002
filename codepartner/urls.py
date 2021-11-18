@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView, BookSession, DiscussionListView, DiscussionDetailView, VoteDiscussion
+from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView, BookSession, DiscussionListView, DiscussionDetailView, VoteDiscussion, CommentDelete
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -13,7 +13,7 @@ urlpatterns = [
     path('verification', OTPVerificationView.as_view(), name="otp_ver"),
     path('enter_otp', OTPVerfied.as_view(), name="verified"),
     path('index', IndexView.as_view(), name='index'),
-    path('logout', LogoutView.as_view(), name='logout'),
+    path('logout', csrf_exempt(LogoutView.as_view()), name='logout'),
     path('profile/<pk>', EachUserProfile.as_view(
         template_name='user/each_profile.html'), name='each_profile'),
     path('reset_password', auth_views.PasswordResetView.as_view(template_name='account/password_reset.html'),
@@ -35,5 +35,6 @@ urlpatterns = [
     path('discussion', DiscussionListView.as_view(), name="discussion"),
     path('discussion_detail/<pk>',
          DiscussionDetailView.as_view(), name='discussion_detail'),
-    path('discussion_vote', VoteDiscussion.as_view(), name="vote")
+    path('discussion_vote', VoteDiscussion.as_view(), name="vote"),
+    path('comment_delete', CommentDelete.as_view(), name='delete_comment'),
 ]

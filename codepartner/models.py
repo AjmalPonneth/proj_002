@@ -98,7 +98,7 @@ class Discussion(models.Model):
     thumpsdown = models.IntegerField(default='0')
     thumbs = models.ManyToManyField(
         NewUser, related_name='thumbs', default=None, blank=True)
-    created = models.TimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} by {self.user}"
@@ -115,9 +115,21 @@ class Vote(models.Model):
 class Comment(models.Model):
     discusssion = models.ForeignKey(
         Discussion, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(NewUser(), on_delete=models.CASCADE)
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
     content = RichTextField()
+    thumbsup = models.IntegerField(default='0')
+    thumbsdown = models.IntegerField(default='0')
+    thumbs = models.ManyToManyField(
+        NewUser, related_name='comment_thumbs', default=None, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.content} by {self.content}"
+        return f"commented by {self.user}"
+
+
+class CommentVote(models.Model):
+    comment = models.ForeignKey(
+        Comment, on_delete=models.CASCADE, related_name='cmntid', default=None, blank=True)
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE,
+                             related_name='cmntuser', default=None, blank=True)
+    vote = models.BooleanField(default=True)

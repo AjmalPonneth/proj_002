@@ -1,12 +1,14 @@
-.counts .col{
+.counts .col {
     margin: 30px;
     background-color: #eee;
     text-align: center;
     border-radius: 10px;
 }
-.counts .col h4{
+
+.counts .col h4 {
     margin: 10px;
 }
-.charts{
-    margin: 30px;
+
+.charts {
+    display: flex;
 }

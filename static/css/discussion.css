@@ -1,71 +1,94 @@
-.main-container .discussion{
+.main-container .discussion {
     margin: 40px;
     width: 100%;
 }
 
-.discussion-card{
+.discussion-card {
     background: #fff;
     padding: 15px;
     height: auto;
     margin: 10px;
 }
-.user-information{
+
+.user-information {
     display: flex;
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
 }
-.main-container .discussion .discussion-card .user-information  .user-image{
+
+.main-container .discussion .discussion-card .user-information .user-image {
     height: 48px;
     width: 48px;
     border-radius: 50%;
     display: inline-block;
 }
-.main-container .discussion .discussion-card .user-information .user-name{
+
+.main-container .discussion .discussion-card .user-information .user-name {
     margin: 5px;
     margin-left: 10px;
     padding-top: 5px;
 }
-.main-container .discussion .discussion-card .content-section .card-title{
+
+.main-container .discussion .discussion-card .content-section .card-title {
     font-size: larger;
     text-transform: capitalize;
     color: #0056B3;
 }
-.main-container .discussion .discussion-card .content-section .card-title:hover{
+
+.main-container .discussion .discussion-card .content-section .card-title:hover {
     text-decoration: underline;
 }
-.main-container .discussion .discussion-card .content-section .card-content{
+
+.main-container .discussion .discussion-card .content-section .card-content {
     margin-bottom: 5px;
     color: #858585;
     font-size: 15px;
-    font-weight:200;
+    font-weight: 200;
 }
-.main-container .discussion .discussion-card footer{
+
+.main-container .discussion .discussion-card footer {
     padding-bottom: 10px;
     margin: 10px;
 }
-.main-container .discussion .discussion-card footer .vote{
+
+.main-container .discussion .discussion-card footer .vote {
     margin-top: 10px;
 }
-.thumb-active{
-    fill: blue;
+
+.timesince {
+    display: flex;
+    justify-content: flex-end;
 }
-.main-container .discussion .comment-form .comment-form-card{
+
+.main-container .discussion .comment-form .comment-form-card {
     background: #fff;
     padding: 15px;
     height: auto;
     margin: 10px;
 }
-.comment-btn{
+
+.comment-btn {
+    cursor: pointer;
     height: auto;
-    margin: 10px;
     border: none;
-    background:#706FD3;
+    background: #706FD3;
     letter-spacing: 2px;
     padding: 5px;
     color: #fff;
     width: 15%;
+    height: 5%;
 }
-.main-container .discussion .discussion-card .comment .user-information{
+
+.delete {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-form .comment-form-card .comment .comment-user-information .user-image {
     height: 48px;
     width: 48px;
-    border-radius: 50%;  
+    border-radius: 50%;
+}
+
+.thumb-active {
+    fill: blue;
 }

@@ -14,7 +14,7 @@ form.addEventListener("submit", (e) => {
       body: JSON.stringify({
         username: username,
         email: email,
-        phone: phone.trim(),
+        phone: phone,
         password: password,
       }),
       method: "POST",
