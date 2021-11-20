@@ -44,6 +44,7 @@
 }
 
 .book-btn {
+    cursor: pointer;
     width: 100%;
     border: none;
     padding: 15px;
@@ -78,6 +79,7 @@
     font-weight: 400;
     color: #3a34ec;
 }
-.session-user-profile .session-user-profile-card p{
+
+.session-user-profile .session-user-profile-card p {
     margin: 15px;
 }

@@ -69,6 +69,13 @@ class Session(models.Model):
         ordering = ['user']
 
 
+class PendingSession(models.Model):
+    user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    session = models.ManyToManyField(Session, blank=True)
+    status = models.CharField(max_length=10, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+
 class Discussion(models.Model):
     category_choices = (
         ('Beginner', 'Beginner'),

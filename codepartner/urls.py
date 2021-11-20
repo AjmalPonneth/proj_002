@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
-from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView, BookSession, DiscussionListView, DiscussionDetailView, VoteDiscussion, CommentDelete
+from .views import LandingView, LoginView, RegisterView, IndexView, LogoutView, OTPLoginView, OTPVerificationView, OTPVerfied, RegisterOTP, ProfileView, EachUserProfile, UserSkillsView, CreateUserSkill, SessionCreateView, SessionDetailView, BookSession, DiscussionListView, DiscussionDetailView, VoteDiscussion, CommentDelete, PendingSessionView
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', LandingView.as_view(), name='landing'),
@@ -37,4 +37,5 @@ urlpatterns = [
          DiscussionDetailView.as_view(), name='discussion_detail'),
     path('discussion_vote', VoteDiscussion.as_view(), name="vote"),
     path('comment_delete', CommentDelete.as_view(), name='delete_comment'),
+    path('pending_session', PendingSessionView.as_view(), name='pending_session'),
 ]

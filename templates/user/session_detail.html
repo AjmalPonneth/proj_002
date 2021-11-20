@@ -2,7 +2,7 @@
 <head>
   <link rel="stylesheet" href="{% static 'css/session_detail.css'%}" />
 </head>
-
+<span id="session" data-value="{{object.id}}"></span>
 <div class="main-container">
   <div class="session-detail">
     <header>Session Detail</header>
@@ -58,6 +58,7 @@
 <script>
   $(document).ready(function () {
     $(document).on("click", ".book-btn", function () {
+      var sessionId = $('#session').attr('data-value')
       swal({
         title: "Are you sure?",
         text: "Do You Want To Book This Session?",
@@ -66,9 +67,16 @@
         dangerMode: false,
       }).then((willDelete) => {
         if (willDelete) {
-          swal("Poof! Your imaginary file has been deleted!", {
-            icon: "success",
-          })
+         $.ajax({
+          type:"POST",
+          url:"{% url 'book_session'%}",
+          data:{
+            sessionId:sessionId
+          },
+          success:function(){
+            location.replace('/pending_session')
+          }
+         })
         }
       })
     })

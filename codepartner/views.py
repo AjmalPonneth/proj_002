@@ -362,7 +362,20 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
 
 class BookSession(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        sessionId = self.request.POST.get('sessionId')
+        session = Session.objects.get(id=sessionId)
+        session.book = self.request.user
+        session.save()
+        pending = PendingSession.objects.create(user=self.request.user)
+        pending.session.add(session)
+        pending.status = "Pending"
+        pending.save()
         return JsonResponse({'succcess': True})
+
+
+class PendingSessionView(LoginRequiredMixin, ListView):
+    model = PendingSession
+    template_name = 'user/pending_session.html'
 
 
 class DiscussionListView(LoginRequiredMixin, ListView):
