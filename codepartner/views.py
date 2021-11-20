@@ -285,27 +285,31 @@ class CreateUserSkill(View):
 
 class UserSkillsView(View):
     def get(self, request, *args, **kwargs):
-        qs = UserSkills.objects.get(user=self.request.user)
-        user_skills = []
-        if qs.python:
-            user_skills.append("Python")
-        if qs.javascript:
-            user_skills.append("Javascript")
-        if qs.php:
-            user_skills.append("PHP")
-        if qs.java:
-            user_skills.append("Java")
-        if qs.cpp:
-            user_skills.append("C++")
-        if qs.csharp:
-            user_skills.append("C#")
-        if qs.ruby:
-            user_skills.append("Ruby")
-        if qs.go:
-            user_skills.append("Go")
-        if qs.r:
-            user_skills.append("R")
-        return JsonResponse({'skills': user_skills})
+        try:
+            qs = UserSkills.objects.get(user=self.request.user)
+            user_skills = []
+            if qs.python:
+                user_skills.append("Python")
+            if qs.javascript:
+                user_skills.append("Javascript")
+            if qs.php:
+                user_skills.append("PHP")
+            if qs.java:
+                user_skills.append("Java")
+            if qs.cpp:
+                user_skills.append("C++")
+            if qs.csharp:
+                user_skills.append("C#")
+            if qs.ruby:
+                user_skills.append("Ruby")
+            if qs.go:
+                user_skills.append("Go")
+            if qs.r:
+                user_skills.append("R")
+            return JsonResponse({'skills': user_skills})
+        except UserSkills.DoesNotExist:
+            qs = UserSkills.objects.create(user=self.request.user)
+            return JsonResponse({'success': True})
 
 
 class EachUserProfile(LoginRequiredMixin, DetailView):
@@ -373,9 +377,10 @@ class BookSession(LoginRequiredMixin, View):
         return JsonResponse({'succcess': True})
 
 
-class PendingSessionView(LoginRequiredMixin, ListView):
-    model = PendingSession
-    template_name = 'user/pending_session.html'
+class PendingSessionView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        pending_session = PendingSession.objects.filter(status="Pending")
+        return render(request, 'user/pending_session.html', {'pending': pending_session})
 
 
 class DiscussionListView(LoginRequiredMixin, ListView):

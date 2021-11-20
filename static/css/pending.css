@@ -1,0 +1,30 @@
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 10%;
+    font-size: 15px;
+    text-align: center;
+    background: #1779ba;
+    color: #fff;
+}
+
+.accept {
+    width: 85%;
+    border: none;
+    background: #1779ba;
+    color: #fff;
+    height: 6vh;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.reject {
+    margin-top: 10px;
+    width: 85%;
+    background: transparent;
+    border: 2px solid #1779ba;
+    height: 6vh;
+    border-radius: 5px;
+}

@@ -1,4 +1,46 @@
 {%extends 'user/base.html'%}
 {%load static%}
 {% block content%}
+<head>
+    <link rel="stylesheet" href="{% static 'css/pending.css'%}">
+</head>
+<div class="sessions">
+    {%for i in pending%}
+    {%for j in i.session.all%}
+    <div class="column">
+        <div class="card">
+            {%if request.user == j.user%}
+            <img
+                src="{{j.book.image.url}}"
+                style="width: 150px; height: auto; padding-top: 10px"
+            />
+            <h3><a href="{% url 'each_profile' j.book.id%}">{{j.book.username}}</a></h3>
+
+            <p class="session-type">{{j.goal}}</p>
+
+            <p>{{j.language}}, {{j.level}}</p>
+            <p>{{j.date}}, {{j.time}}</p>
+            <br />
+            <button class="accept">Accept</button><br>
+            <button class="reject">Reject</button>
+            {%endif%}
+            {%if request.user == j.book%}
+            <img
+                src="{{j.user.image.url}}"
+                style="width: 150px; height: auto; padding-top: 10px"
+            />
+            <h3><a href="{% url 'each_profile' j.user.id%}">{{j.user.username}}</a></h3>
+
+            <p class="session-type">{{j.goal}}</p>
+
+            <p>{{j.language}}, {{j.level}}</p>
+            <p>{{j.date}}, {{j.time}}</p>
+            <br />
+            <span class="badge">{{i.status}}</span>
+            {%endif%}
+        </div>
+    </div>
+    {%endfor%}
+    {%endfor%}
+</div>
 {% endblock%}
