@@ -1,46 +1,50 @@
-{%extends 'user/base.html'%}
-{%load static%}
-{% block content%}
+{%extends 'user/base.html'%} {%load static%} {% block content%}
 <head>
-    <link rel="stylesheet" href="{% static 'css/pending.css'%}">
+  <link rel="stylesheet" href="{% static 'css/pending.css'%}" />
 </head>
+
 <div class="sessions">
-    {%for i in pending%}
-    {%for j in i.session.all%}
-    <div class="column">
-        <div class="card">
-            {%if request.user == j.user%}
-            <img
-                src="{{j.book.image.url}}"
-                style="width: 150px; height: auto; padding-top: 10px"
-            />
-            <h3><a href="{% url 'each_profile' j.book.id%}">{{j.book.username}}</a></h3>
+  {%for i in rec%}
+  <div class="column">
+    <div class="card">
+      <img
+        src="{{i.sender.image.url}}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h3>
+        <a href="">{{i.sender.username}}</a>
+      </h3>
 
-            <p class="session-type">{{j.goal}}</p>
+      <p class="session-type">{{i.session.goal}}</p>
 
-            <p>{{j.language}}, {{j.level}}</p>
-            <p>{{j.date}}, {{j.time}}</p>
-            <br />
-            <button class="accept">Accept</button><br>
-            <button class="reject">Reject</button>
-            {%endif%}
-            {%if request.user == j.book%}
-            <img
-                src="{{j.user.image.url}}"
-                style="width: 150px; height: auto; padding-top: 10px"
-            />
-            <h3><a href="{% url 'each_profile' j.user.id%}">{{j.user.username}}</a></h3>
-
-            <p class="session-type">{{j.goal}}</p>
-
-            <p>{{j.language}}, {{j.level}}</p>
-            <p>{{j.date}}, {{j.time}}</p>
-            <br />
-            <span class="badge">{{i.status}}</span>
-            {%endif%}
-        </div>
+      <p>{{i.session.language}}, {{i.session.level}}</p>
+      <p>{{i.session.date}}, {{i.session.time}}</p>
+      <button class="reject">Reject</button>
+      <button class="accept">Accept</button>
     </div>
-    {%endfor%}
-    {%endfor%}
+  </div>
 </div>
-{% endblock%}
+{%endfor%}
+<div class="sessions">
+  {%for j in sender%}
+  <div class="column">
+    <div class="card">
+      <img
+        src="{{j.reciever.image.url}}"
+        style="width: 150px; height: auto; padding-top: 10px"
+      />
+      <h3>
+        <a href="{% url 'each_profile' j.reciever.id%}"
+          >{{j.reciever.username}}</a
+        >
+      </h3>
+
+      <p class="session-type">{{j.session.goal}}</p>
+
+      <p>{{j.session.language}}, {{j.session.level}}</p>
+      <p>{{j.session.date}}, {{j.session.time}}</p>
+      <div class="badge">Pending</div>
+    </div>
+  </div>
+</div>
+{%endfor%} {% endblock%}

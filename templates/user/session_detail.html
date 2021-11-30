@@ -40,7 +40,13 @@
           <input type="text" id="time" value="{{object.time}}" disabled />
         </div>
         <div class="form-group">
-          <button type="button" class="book-btn">Book Session</button>
+          <button
+            type="button"
+            onclick="book_session({{object.user.id}},{{object.id}})"
+            class="book-btn"
+          >
+            Book Session
+          </button>
         </div>
       </form>
     </div>
@@ -55,31 +61,40 @@
     </div>
   </div>
 </div>
-<script>
-  $(document).ready(function () {
-    $(document).on("click", ".book-btn", function () {
-      var sessionId = $('#session').attr('data-value')
-      swal({
-        title: "Are you sure?",
-        text: "Do You Want To Book This Session?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: false,
-      }).then((willDelete) => {
-        if (willDelete) {
-         $.ajax({
-          type:"POST",
-          url:"{% url 'book_session'%}",
-          data:{
-            sessionId:sessionId
-          },
-          success:function(){
-            location.replace('/pending_session')
+<script type="text/javascript">
+  let book_session = (id, session_id) => {
+    let payload = {
+      csrfmiddlewaretoken: "{{csrf_token}}",
+      reciever_id: id,
+      session_id: session_id,
+    }
+    swal({
+      title: "Are you sure?",
+      text: "Do You Want To Book This Session?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: false,
+    }).then((willDelete) => {
+      $.ajax({
+        type: "POST",
+        url: "{% url 'book_session'%}",
+        dataType: "json",
+        data: payload,
+        success: function (data) {
+          if (data.response == "Session Request Sent!") {
+            let x = swal("Good job!", data.response, "success")
+            if (x) {
+              location.replace("/pending_session")
+            }
+          } else if (data.response != null) {
+            swal(data.response)
           }
-         })
-        }
+        },
+        error: function () {
+          swal("Something Went Wrong!")
+        },
       })
     })
-  })
+  }
 </script>
 {% endblock%}

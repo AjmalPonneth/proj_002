@@ -187,7 +187,6 @@ class ProfileView(LoginRequiredMixin, View):
         user_best = data.get('user_best')
         user_current_project = data.get('user_current_project')
         user_fav_lang = data.get('user_fav_lang')
-        user_image = data.get('image')
         # Firstname
         if len(first_name) > 1:
             user = NewUser.objects.filter(
@@ -366,21 +365,38 @@ class SessionDetailView(LoginRequiredMixin, DetailView):
 
 class BookSession(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        sessionId = self.request.POST.get('sessionId')
-        session = Session.objects.get(id=sessionId)
-        session.book = self.request.user
-        session.save()
-        pending = PendingSession.objects.create(user=self.request.user)
-        pending.session.add(session)
-        pending.status = "Pending"
-        pending.save()
-        return JsonResponse({'succcess': True})
+        user = self.request.user
+        payload = {}
+        reciever_id = self.request.POST.get('reciever_id')
+        session_id = self.request.POST.get('session_id')
+        reciever = NewUser.objects.get(id=reciever_id)
+        session = Session.objects.get(id=session_id)
+        try:
+            session_rqst = SessionRequest.objects.filter(
+                sender=user, reciever=reciever)
+            try:
+                for rqst in session_rqst:
+                    if rqst.is_active:
+                        raise Exception("You already send them a request!")
+                SessionRequest.objects.create(
+                    sender=user, session=session, reciever=reciever)
+                payload['response'] = "Session Request Sent!"
+            except Exception as e:
+                payload['response'] = str(e)
+        except SessionRequest.DoesNotExist:
+            create_rqst = SessionRequest.objects.create(
+                sender=user, reciever=reciever, session=session)
+            payload['response'] = "Session Request Sent!"
+        if payload['response'] == None:
+            payload['response'] = "Something Went Wrong!"
+        return HttpResponse(json.dumps(payload), content_type="application/json")
 
 
 class PendingSessionView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        pending_session = PendingSession.objects.filter(status="Pending")
-        return render(request, 'user/pending_session.html', {'pending': pending_session})
+        rec = SessionRequest.objects.filter(reciever=self.request.user)
+        sender = SessionRequest.objects.filter(sender=self.request.user)
+        return render(request, 'user/pending_session.html', {'rec': rec, 'sender': sender})
 
 
 class DiscussionListView(LoginRequiredMixin, ListView):

@@ -47,11 +47,8 @@ class Session(models.Model):
         ('Intermediate', 'Intermediate'),
         ('Advanced', 'Advanced'),
     )
-
     user = models.ForeignKey(
-        NewUser, on_delete=models.CASCADE, related_name="session_creator", blank=False)
-    book = models.ForeignKey(
-        NewUser, on_delete=models.CASCADE, related_name="session_book", blank=True, null=True)
+        NewUser, on_delete=models.CASCADE, blank=False)
     goal = models.CharField(blank=False, max_length=100, choices=goal_choices)
     language = models.CharField(
         blank=False, max_length=100, choices=language_choices)
@@ -69,11 +66,13 @@ class Session(models.Model):
         ordering = ['user']
 
 
-class PendingSession(models.Model):
-    user = models.ForeignKey(NewUser, on_delete=models.CASCADE)
-    session = models.ManyToManyField(Session, blank=True)
-    status = models.CharField(max_length=10, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+class SessionRequest(models.Model):
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        NewUser, on_delete=models.CASCADE, related_name="sender")
+    reciever = models.ForeignKey(
+        NewUser, on_delete=models.CASCADE, related_name="reciever")
+    is_active = models.BooleanField(default=True)
 
 
 class Discussion(models.Model):

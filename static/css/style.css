@@ -1,42 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-:root{
+
+:root {
     --primary-color: #eee;
     --secondary-color: #000;
     --button-color: #706FD3;
 }
 
-*{
+* {
     font-family: 'Poppins', sans-serif;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    outline: none; border: none;
+    outline: none;
+    border: none;
     text-transform: capitalize;
 }
-html{
+
+html {
     font-size: 62.5%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
 .parsley-required,
 .parsley-type {
     color: red;
     list-style: none;
     font-size: 15px;
 }
+
 ::placeholder {
     text-transform: capitalize;
     color: var(--button-color);
 }
-body{
+
+body {
     background: var(--primary-color);
 }
-section{
+
+section {
     min-height: 100vh;
     padding: 0 9%;
     padding-top: 7.5rem;
 }
-.btn{
+
+.btn {
     display: inline-block;
     margin-top: 1rem;
     padding: .8rem 4rem;
@@ -48,17 +57,21 @@ section{
     transition: all .3s ease-out;
     font-size: 1.5rem;
 }
-.btn:hover{
+
+.btn:hover {
     transform: scale(1.1);
 }
-.heading{
+
+.heading {
     text-align: center;
     font-size: 3.5rem;
     text-transform: uppercase;
 }
-header{
+
+header {
     position: fixed;
-    top: 0;left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     background: #fff;
     padding: 2rem 9%;
@@ -67,156 +80,185 @@ header{
     justify-content: space-between;
     z-index: 1000;
 }
-header .logo{
+
+header .logo {
     font-size: 2rem;
     font-size: medium;
     font-weight: bold;
     color: var(--button-color);
 }
-header .navbar a{
+
+header .navbar a {
     font-size: 1.7rem;
     margin-left: 2rem;
-    color:var(--secondary-color);
+    color: var(--secondary-color);
 }
+
 header input {
     display: none;
 }
-header label{
+
+header label {
     font-size: 3rem;
     cursor: pointer;
     opacity: 0;
 }
 
-.home{
+.home {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.home .image img{
+
+.home .image img {
     width: 40vw;
     /* animation: float 3s linear infinite; */
 }
-.home .content h3{
+
+.home .content h3 {
     font-size: 5.5rem;
     color: #666;
     text-transform: uppercase;
 }
-.home .content p{
+
+.home .content p {
     font-size: 1.7rem;
     padding: 1rem 0;
 }
 
-.features .box-container{
+.features .box-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.features .box-container .box{
+.features .box-container .box {
     flex: 1 1 30rem;
     background: #fff;
     border-radius: .5rem;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
     margin: 1.5rem;
     padding: 3rem 2rem;
     border-radius: .5rem;
     text-align: center;
     transition: .2s linear;
 }
-.features .box-container .box img{
+
+.features .box-container .box img {
     height: 8rem;
 }
-.features .box-container .box h3{
+
+.features .box-container .box h3 {
     font-size: 2rem;
     color: #333;
     padding-top: 1rem;
 }
-.features .box-container .box p{
+
+.features .box-container .box p {
     font-size: 1.3rem;
     color: #666;
     padding-top: 1rem 0;
 }
-.about .column{
+
+.about .column {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
-.about .column .image{
+
+.about .column .image {
     flex: 1 1 40rem;
 }
-.about .column .content{
+
+.about .column .content {
     flex: 1 1 40rem;
 }
-.about .column .image img{
+
+.about .column .image img {
     width: 70%;
 }
-.about .column .content p{
+
+.about .column .content p {
     font-size: 1.6rem;
     color: #666;
     padding: 1rem 0;
 }
-.contact{
+
+
+.contact {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 4rem;
 }
-.contact .image{
+
+.contact .image {
     flex: 1 1 0;
 }
-.contact .image img{
+
+.contact .image img {
     width: 100%;
     padding: 4rem;
 }
-.contact form{
+
+.contact form {
     flex: 1 1 40rem;
     padding: 2rem 3rem;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
     border-radius: .5rem;
     background: #fff;
 }
-.contact form .heading{
+
+.contact form .heading {
     text-align: left;
     padding: 0;
     padding-bottom: 2rem;
 }
-.contact form .input-box{
+
+.contact form .input-box {
     position: relative;
 }
-.contact form .input-box input, .contact form .input-box textarea{
+
+.contact form .input-box input, .contact form .input-box textarea {
     width: 100%;
     background: none;
     margin: 1.5rem 0;
     padding: .5rem 0;
     font-size: 1.7rem;
-    border-bottom: .1rem solid rgba(0,0,0,.1);
+    border-bottom: .1rem solid rgba(0, 0, 0, .1);
     text-transform: none;
 }
-.contact form .input-box textarea{
+
+.contact form .input-box textarea {
     resize: none;
     height: 13rem;
 }
-@media(max-width:1200px){
-    html{
+
+@media(max-width:1200px) {
+    html {
         font-size: 55%;
     }
 }
-@media(max-width:991px){
-    section{
+
+@media(max-width:991px) {
+    section {
         padding: 0 9%;
     }
 }
-@media(max-width:768px){
-    header label{
+
+@media(max-width:768px) {
+    header label {
         visibility: visible;
         opacity: 1;
     }
-    header .navbar{
+
+    header .navbar {
         position: absolute;
-        top: 100%; left: 0;
+        top: 100%;
+        left: 0;
         width: 100%;
         background: #fff;
         padding: 1rem 2rem;
@@ -226,37 +268,46 @@ header label{
         opacity: 0;
         transition: .2s linear;
     }
+
     header .navbar a {
         display: block;
         margin: 2rem 0;
         font-size: 2rem;
     }
-    header input:checked ~ .navbar{
+
+    header input:checked~.navbar {
         transform: scaleY(1);
         opacity: 1;
-        
+
     }
-    header input:checked ~ label::before   {
+
+    header input:checked~label::before {
         content: '\f00d';
     }
-    .home{
+
+    .home {
         flex-flow: column-reverse;
     }
+
     .home .image img {
         width: 100%;
     }
-    .home .content h3{
+
+    .home .content h3 {
         font-size: 3.6rem;
     }
-    .home .content p{
+
+    .home .content p {
         font-size: 1.5rem;
     }
-    .contact .image img{
+
+    .contact .image img {
         display: none;
     }
 }
-@media(max-width: 450px){
-    html{
+
+@media(max-width: 450px) {
+    html {
         font-size: 55%;
     }
 }
